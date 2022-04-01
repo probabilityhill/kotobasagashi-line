@@ -35,12 +35,15 @@ function getWords(str){
   str = str.replace(/\|(.+)\|/, "Math.abs($1)");  // 絶対値
   str = "/^" + str + "$/";
   var result = csvArray.filter(RegExp.prototype.test,eval(str));
-  return result.join(", ");
+  if(result.length === 0){
+    return "みつからなかった😣"
+  }
+  return "「"+result.join(", ")+"」がみつかったよ😊";
 }
 
 // テスト
 function myFunction() {
-  console.log(getWords("...あ"));
+  console.log(getWords("ね..り"));
 }
 
 function doPost(e){
