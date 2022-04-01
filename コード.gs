@@ -26,7 +26,7 @@ const rule = {
 
 
 function getWords(str){
-  str = str.replace("e", "Math.exp(1)");                  // ネイピア数 e
+  str = str.replace("？", ".");
   str = str.replace(/(\S+)\^(\S+)/, "Math.pow($1, $2)");  // 累乗 x^a
   str = str.replace(/\log\((.+)\)/, "Math.log($1)");      // 自然対数 log(x)
   str = str.replace(/\|(.+)\|/, "Math.abs($1)");          // 絶対値 |x|
@@ -43,7 +43,7 @@ function getWords(str){
 
 // テスト
 function myFunction() {
-  console.log(getWords("ね..り"));
+  console.log(getWords("ね？"));
 }
 
 function doPost(e){
