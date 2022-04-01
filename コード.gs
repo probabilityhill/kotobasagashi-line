@@ -25,7 +25,7 @@ const rule = {
 
 
 
-function convertExpression(str){
+function getWords(str){
   str = str.replace("e", "Math.exp(1)");                  // ネイピア数 e
   str = str.replace(/(\S+)\^(\S+)/, "Math.pow($1, $2)");  // 累乗 x^a
   str = str.replace(/\log\((.+)\)/, "Math.log($1)");      // 自然対数 log(x)
@@ -33,17 +33,14 @@ function convertExpression(str){
   str = str.replace(/sqrt\((.+)\)/, "Math.sqrt($1)");     // 平方根 sqrt(x)
   str = str.replace(/cbrt\((.+)\)/, "Math.cbrt($1)");     // 立方根 cbrt(x)
   str = str.replace(/\|(.+)\|/, "Math.abs($1)");  // 絶対値
-  str = str.replace(/\|(.+)\|/, "Math.abs($1)");  // 絶対値
-  str = str.replace(/\|(.+)\|/, "Math.abs($1)");  // 絶対値
-  return String(eval(str));
+  str = "/^" + str + "$/";
+  var result = csvArray.filter(RegExp.prototype.test,eval(str));
+  return result.join(", ");
 }
 
+// テスト
 function myFunction() {
-
-
-
-  var result = csvArray.filter(RegExp.prototype.test,/^..あ.$/);
-  console.log(result);
+  console.log(getWords("...あ"));
 }
 
 function doPost(e){
@@ -72,7 +69,7 @@ function doPost(e){
         default:
           var messages = [{
             "type":"text",
-            "text":convertExpression(text),
+            "text":getWords(text),
             "quickReply": {
               "items": [
                 {
