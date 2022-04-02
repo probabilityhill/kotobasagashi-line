@@ -1,13 +1,9 @@
 const scriptProperties = PropertiesService.getScriptProperties();
 const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN');
 
-const hiragana_id = '1MwQXXOETSYRbUT11ZGcJgXW_aZ92U2C1';
-var hiraFile = DriveApp.getFileById(hiragana_id);
-var hiraArray = getArray(hiraFile);
-
-function getArray(csvFile){
-  return csvFile.getBlob().getDataAsString("UTF-8").split(",");
-}
+const wordsId = '1BiDeYFDhD4aXT7hIag_L0uJuOiSY84_s';
+var wordsFile = DriveApp.getFileById(wordsId);
+var wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split(",");
 
 const rule = {
   "type": "bubble",
@@ -34,7 +30,7 @@ function getWords(str){
   str = str.replace(/cbrt\((.+)\)/, "Math.cbrt($1)");     // 立方根 cbrt(x)
   str = str.replace(/\|(.+)\|/, "Math.abs($1)");  // 絶対値
   str = "/^" + str + "$/";
-  var result = hiraArray.filter(RegExp.prototype.test,eval(str));
+  var result = wordsArray.filter(RegExp.prototype.test,eval(str));
   if(result.length === 0){
     return "みつからなかった😣"
   }
@@ -43,7 +39,8 @@ function getWords(str){
 
 // テスト
 function myFunction() {
-  console.log(getWords("ね？"));
+  // h-
+  console.log(getWords("猿.+"));
 }
 
 function doPost(e){
