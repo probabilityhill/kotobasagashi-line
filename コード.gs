@@ -1,13 +1,13 @@
 const scriptProperties = PropertiesService.getScriptProperties();
 const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN');
 
-const folder_id = '1s35bmgREfICvHK-8Eezgx51g7ZV8Ojfb';
-var folder = DriveApp.getFolderById(folder_id);
-var files = folder.getFiles();
-while (files.hasNext()) {
-  var csv = files.next().getBlob().getDataAsString("UTF-8");
+const hiragana_id = '1MwQXXOETSYRbUT11ZGcJgXW_aZ92U2C1';
+var hiraFile = DriveApp.getFileById(hiragana_id);
+var hiraArray = getArray(hiraFile);
+
+function getArray(csvFile){
+  return csvFile.getBlob().getDataAsString("UTF-8").split(",");
 }
-var csvArray = csv.split(",");
 
 const rule = {
   "type": "bubble",
@@ -34,7 +34,7 @@ function getWords(str){
   str = str.replace(/cbrt\((.+)\)/, "Math.cbrt($1)");     // 立方根 cbrt(x)
   str = str.replace(/\|(.+)\|/, "Math.abs($1)");  // 絶対値
   str = "/^" + str + "$/";
-  var result = csvArray.filter(RegExp.prototype.test,eval(str));
+  var result = hiraArray.filter(RegExp.prototype.test,eval(str));
   if(result.length === 0){
     return "みつからなかった😣"
   }
