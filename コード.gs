@@ -18,13 +18,53 @@ const rule = {
     ]
   }
 };
+/*
+ルール
+.（ピリオド）？（全角はてな） → １文字
+~（半角チルダ）〜（波ダッシュ）～（全角チルダ） → 含む
+'a/b'（シングルクォーテーション, 半角スラッシュ） → または
+[]（角括弧）【】（隅付き括弧） → 構成する
 
+- 文字数を限定する
+aで始まる → a...
+bで終わる → ...b
+aで始まりbで終わる → a..b
+aを含む → .a..
+aを含む → (~a)...（.の数 = 全体の文字数）
+aとbを含む → (~a)(~b)...（.の数 = 全体の文字数）
+aを含むがbを含まない → (~a)(!~b)...
+a,b,cで構成される → [abc]{n}
+aまたはbで始まる → 'a/b'...
+aまたはbで終わる → ...'a/b'
+aまたはbで始まりcまたはdで終わる → 'a/b'..'c/d'
+aまたはbを含む → .'a/b'..
+aまたはbを含む → (~'a/b'~)...（.の数 = 全体の文字数）
+
+- 文字数を限定しない
+aで始まる → a~
+bで終わる → ~b
+aで始まりbで終わる → a~b
+aを含む → ~a~
+aを含まない → (!~a)~
+aとbを含む → (~a)(~b)~
+aを含むがbを含まない → (~a)(!~b)~
+a,b,cで構成される → [abc]
+aまたはbで始まる → 'a/b'~
+aまたはbで終わる → ~'a/b'
+aまたはbで始まりcまたはdで終わる → 'a/b'~'c/d'
+aまたはbを含む → ~'a/b'~
+*/
 
 
 function getWords(str){
-  str = str.replace(/？/g, ".")  // １文字
-  str = str.replace(/~/g, ".*").replace(/～/g, ".*").replace(/～/g, ".*");  // 含む
-  str = str.replace(/\]/g, "]+").replace(/\(/g, "(?=").replace(/\=!/g, "!").replace(/\{/g, "(").replace(/\}/g, ")");
+  str = str.replace(/？/g, ".");  // １文字
+  str = str.replace(/~/g, ".*").replace(/〜/g, ".*").replace(/～/g, ".*");  // 含む .*a.*
+  str = str.replace(/\]$/g, "]+");  // 構成する []+
+  str = str.replace(/\(/g, "(?=");  // 肯定先読み (?=~)
+  str = str.replace(/\=\!/g, "!");  // 否定先読み　(?!~)~
+  str = str.replace(/'(.+)'/g, "($1)").replace(/\//g, "|");  // または (a|b)
+
+
   console.log(str);
   if(/\-/.test(str)){
     let strArray = str.split("-");
@@ -59,7 +99,7 @@ function getWords(str){
 // テスト
 function myFunction() {
   // h-
-  console.log(getWords("～あ？？ん～"));
+  console.log(getWords("a-'a/b'.."));
 }
 
 function doPost(e){
