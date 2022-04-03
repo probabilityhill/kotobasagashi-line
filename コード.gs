@@ -2,8 +2,8 @@ const scriptProperties = PropertiesService.getScriptProperties();
 const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN');
 
 const wordsId = '1BiDeYFDhD4aXT7hIag_L0uJuOiSY84_s';
-var wordsFile = DriveApp.getFileById(wordsId);
-var wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split(",");
+const wordsFile = DriveApp.getFileById(wordsId);
+const wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split(",");
 
 const rule = {
   "type": "bubble",
@@ -29,8 +29,25 @@ function getWords(str){
   str = str.replace(/sqrt\((.+)\)/, "Math.sqrt($1)");     // 平方根 sqrt(x)
   str = str.replace(/cbrt\((.+)\)/, "Math.cbrt($1)");     // 立方根 cbrt(x)
   str = str.replace(/\|(.+)\|/, "Math.abs($1)");  // 絶対値
+
+  if(/\-/.test(str)){
+    let strArray = str.split("-");
+    let head = strArray[0];
+    str = strArray[1];
+    console.log(head);
+    console.log(str);
+    if(head === "h"){
+      var headRgx = /[\u3040-\u309F]+/;
+    }
+    
+  }
   str = "/^" + str + "$/";
-  var result = wordsArray.filter(RegExp.prototype.test,eval(str));
+
+
+  let result = wordsArray.filter(RegExp.prototype.test,eval(str));
+
+  result = result.filter(function(value) { return value.match(headRgx); });
+
   if(result.length === 0){
     return "みつからなかった😣"
   }
@@ -40,7 +57,7 @@ function getWords(str){
 // テスト
 function myFunction() {
   // h-
-  console.log(getWords("猿.+"));
+  console.log(getWords("h-さん.."));
 }
 
 function doPost(e){
