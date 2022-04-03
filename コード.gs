@@ -27,8 +27,7 @@ const rule = {
 ()（半角括弧）, （）（全角括弧）
 ''（シングルクォーテーション）, 「」（鍵括弧）
 []（角括弧）, 【】（隅付き括弧）
-
-
+{}（波括弧）, ｛｝（全角波括弧）
 
 - 文字数を限定する
 aで始まる → a...
@@ -62,10 +61,11 @@ aまたはbを含む → ~'a/b'~
 */
 
 function getWords(str){
+  str = str.replace(/〜/g, "~").replace(/～/g, "~").replace(/【(.+)】/g, "[$1]").replace(/（(.+)）/g, "($1)").replace(/｛(.+)｝/g, "{$1}")   // 記号の置換
   str = str.replace(/？/g, ".");  // １文字
-  str = str.replace(/~/g, ".*").replace(/〜/g, ".*").replace(/～/g, ".*");  // 含む .*a.*
-  str = str.replace(/【(.+)】/g, "[$1]").replace(/\]$/g, "]+");  // 構成する []+
-  str = str.replace(/（(.+)）/g, "($1)").replace(/\(/g, "(?=");  // 肯定先読み (?=~)
+  str = str.replace(/~/g, ".*");  // 含む .*a.*
+  str = str.replace(/\]$/g, "]+");  // 構成する []+
+  str = str.replace(/\(/g, "(?=");  // 肯定先読み (?=~)
   str = str.replace(/\=\!/g, "!");  // 否定先読み　(?!~)~
   str = str.replace(/'(.+)'/g, "($1)").replace(/\//g, "|");  // または (a|b)
 
