@@ -20,10 +20,14 @@ const rule = {
 };
 /*
 ルール
-.（ピリオド）？（全角はてな） → １文字
-~（半角チルダ）〜（波ダッシュ）～（全角チルダ） → 含む
-'a/b'（シングルクォーテーション, 半角スラッシュ） → または
-[]（角括弧）【】（隅付き括弧） → 構成する
+
+-記号
+１文字 → .（ピリオド）, ？（全角はてな）
+含む → ~（半角チルダ）, 〜（波ダッシュ）, ～（全角チルダ）, ()（半角括弧）, （）（全角括弧）
+または → 'a/b'（シングルクォーテーション）, 「a/b」（鍵括弧）, （半角スラッシュ）
+構成する → []（角括弧）, 【】（隅付き括弧）
+
+
 
 - 文字数を限定する
 aで始まる → a...
@@ -55,15 +59,13 @@ aまたはbで始まりcまたはdで終わる → 'a/b'~'c/d'
 aまたはbを含む → ~'a/b'~
 */
 
-
 function getWords(str){
   str = str.replace(/？/g, ".");  // １文字
   str = str.replace(/~/g, ".*").replace(/〜/g, ".*").replace(/～/g, ".*");  // 含む .*a.*
-  str = str.replace(/\]$/g, "]+");  // 構成する []+
-  str = str.replace(/\(/g, "(?=");  // 肯定先読み (?=~)
+  str = str.replace(/【(.+)】/g, "[$1]").replace(/\]$/g, "]+");  // 構成する []+
+  str = str.replace(/（(.+)）/g, "($1)").replace(/\(/g, "(?=");  // 肯定先読み (?=~)
   str = str.replace(/\=\!/g, "!");  // 否定先読み　(?!~)~
   str = str.replace(/'(.+)'/g, "($1)").replace(/\//g, "|");  // または (a|b)
-
 
   console.log(str);
   if(/\-/.test(str)){
@@ -99,7 +101,7 @@ function getWords(str){
 // テスト
 function myFunction() {
   // h-
-  console.log(getWords("a-'a/b'.."));
+  console.log(getWords("（～あ）？？"));
 }
 
 function doPost(e){
