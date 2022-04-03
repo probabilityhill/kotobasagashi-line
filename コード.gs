@@ -22,14 +22,10 @@ const rule = {
 
 
 function getWords(str){
-  str = str.replace("？", ".");
-  str = str.replace(/(\S+)\^(\S+)/, "Math.pow($1, $2)");  // 累乗 x^a
-  str = str.replace(/\log\((.+)\)/, "Math.log($1)");      // 自然対数 log(x)
-  str = str.replace(/\|(.+)\|/, "Math.abs($1)");          // 絶対値 |x|
-  str = str.replace(/sqrt\((.+)\)/, "Math.sqrt($1)");     // 平方根 sqrt(x)
-  str = str.replace(/cbrt\((.+)\)/, "Math.cbrt($1)");     // 立方根 cbrt(x)
-  str = str.replace(/\|(.+)\|/, "Math.abs($1)");  // 絶対値
-
+  str = str.replace(/？/g, ".")  // １文字
+  str = str.replace(/~/g, ".*").replace(/～/g, ".*").replace(/～/g, ".*");  // 含む
+  str = str.replace(/\]/g, "]+").replace(/\(/g, "(?=").replace(/\=!/g, "!").replace(/\{/g, "(").replace(/\}/g, ")");
+  console.log(str);
   if(/\-/.test(str)){
     let strArray = str.split("-");
     let head = strArray[0];
@@ -63,7 +59,7 @@ function getWords(str){
 // テスト
 function myFunction() {
   // h-
-  console.log(getWords("a-a.+le"));
+  console.log(getWords("～あ？？ん～"));
 }
 
 function doPost(e){
