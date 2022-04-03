@@ -34,18 +34,24 @@ function getWords(str){
     let strArray = str.split("-");
     let head = strArray[0];
     str = strArray[1];
-    console.log(head);
-    console.log(str);
-    if(head === "h"){
-      var headRgx = /[\u3040-\u309F]+/;
+
+    if(head === "a"){
+      var headRgx = /[a-z]+/;
     }
-    
+    else if(head === "k"){
+      var headRgx = /[\u3005-\u3006\u4E00-\u9FFF]+/;
+    }
+    else{
+      var headRgx = /[\u3040-\u309F\u3005-\u3006\u4E00-\u9FFF]+/;
+    }
   }
+  else{
+    var headRgx = /[\u3040-\u309F]+/;
+  }
+
   str = "/^" + str + "$/";
 
-
   let result = wordsArray.filter(RegExp.prototype.test,eval(str));
-
   result = result.filter(function(value) { return value.match(headRgx); });
 
   if(result.length === 0){
@@ -57,7 +63,7 @@ function getWords(str){
 // テスト
 function myFunction() {
   // h-
-  console.log(getWords("h-さん.."));
+  console.log(getWords("a-a.+le"));
 }
 
 function doPost(e){
