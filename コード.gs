@@ -21,8 +21,8 @@ const rule = {
 
 /*
 +注意事項
-アルファベットは小文字に統一されている
-カタカナはひらがなに統一されている
+入力はひらがな, 漢字, アルファベット小文字のいずれか
+全角英数字は半角英数字に変換される
 
 +ルール
 -文字種フィルター
@@ -82,6 +82,9 @@ function getWords(str){
   str = str.replace(/\(/g, "(?=");  // 肯定先読み (?=~)
   str = str.replace(/\=\!/g, "!");  // 否定先読み　(?!~)~
   str = str.replace(/'(.+)'/g, "($1)").replace(/\//g, "|");  // または (a|b)
+  str = str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);  // 全角→半角
+  });
 
   console.log(str);
   if(/\-/.test(str)){
@@ -118,7 +121,7 @@ function getWords(str){
 // テスト
 function myFunction() {
   // h-
-  console.log(getWords("a-~AN~"));
+  console.log(getWords("【さかうらみ】｛３、｝"));
 }
 
 function doPost(e){
