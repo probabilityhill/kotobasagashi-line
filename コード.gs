@@ -32,13 +32,13 @@ hk- → ひらがなと漢字のみ
 a- → アルファベットのみ
 
 -書き換え可能な記号
-.（ピリオド）, ？（全角はてな）
+.（ピリオド）,。（句点）, ?（半角はてな）, ？（全角はてな）
 ~（半角チルダ）, 〜（波ダッシュ）, ～（全角チルダ）
 ()（半角括弧）, （）（全角括弧）
-''（シングルクォーテーション）, 「」（鍵括弧）
 []（角括弧）, 【】（隅付き括弧）
 {}（波括弧）, ｛｝（全角波括弧）
 ,（カンマ）, 、（読点）
+/（スラッシュ）, ・（中黒）
 
 - 文字数を限定する
 aで始まる → a...
@@ -51,11 +51,11 @@ aを含むがbを含まない → (~a)(!~b)...
 aの繰り返しを含む → .a{n}..（{n,} = n文字以上, {n,m} = n文字以上m文字以下）
 a,b,cで構成される → [abc]{n}
 a,b,c以外の文字で構成される → [^abc]{n}
-aまたはbで始まる → 'a/b'...
-aまたはbで終わる → ...'a/b'
-aまたはbで始まりcまたはdで終わる → 'a/b'..'c/d'
-aまたはbを含む → .'a/b'..
-aまたはbを含む → (~'a/b'~)...（.の数 = 全体の文字数）
+aまたはbで始まる → (a/b)...
+aまたはbで終わる → ...(a/b)
+aまたはbで始まりcまたはdで終わる → (a/b)..(c/d)
+aまたはbを含む → .(a/b)..
+aまたはbを含む → (~(a/b)~)...（.の数 = 全体の文字数）
 
 - 文字数を限定しない
 aで始まる → a~
@@ -68,25 +68,27 @@ aを含むがbを含まない → (~a)(!~b)~
 aの繰り返しを含む → ~a{n}~
 a,b,cで構成される → [abc]
 a,b,c以外の文字で構成される → [^abc]
-aまたはbで始まる → 'a/b'~
-aまたはbで終わる → ~'a/b'
-aまたはbで始まりcまたはdで終わる → 'a/b'~'c/d'
-aまたはbを含む → ~'a/b'~
+aまたはbで始まる → (a/b)~
+aまたはbで終わる → ~(a/b)
+aまたはbで始まりcまたはdで終わる → (a/b)~(c/d)
+aまたはbを含む → ~(a/b)~
 */
 
 function getWords(str){
-  str = str.replace(/〜/g, "~").replace(/～/g, "~").replace(/【(.+)】/g, "[$1]").replace(/（(.+)）/g, "($1)").replace(/｛(.+)｝/g, "{$1}").replace(/、/g, ",")   // 記号の置換
-  str = str.replace(/？/g, ".");  // １文字
+  str = str.replace(/〜/g, "~").replace(/～/g, "~").replace(/【(.+)】/g, "[$1]").replace(/（(.+)）/g, "($1)").replace(/｛(.+)｝/g, "{$1}").replace(/、/g, ",").replace(/・/g, "/").replace(/。/g, ".")  // 記号の置換
+  str = str.replace(/\?/g, ".") .replace(/？/g, ".");  // １文字
   str = str.replace(/~/g, ".*");  // 含む .*a.*
   str = str.replace(/\]$/g, "]+");  // 構成する []+
   str = str.replace(/\(/g, "(?=");  // 肯定先読み (?=~)
   str = str.replace(/\=\!/g, "!");  // 否定先読み　(?!~)~
-  str = str.replace(/'(.+)'/g, "($1)").replace(/\//g, "|");  // または (a|b)
+  str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
+  str = str.replace(/\(\.\*\(\?\=(.+\/.+)\)\.\*\)/g, "(?=.*($1).*)")  // またはを含む (~(a|b)~)..
+  str = str.replace(/\//g, "|");  // または (a|b)
   str = str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);  // 全角→半角
   });
 
-  console.log(str);
+  console.log(str);  // CHECK
   if(/\-/.test(str)){
     let strArray = str.split("-");
     let head = strArray[0];
@@ -121,7 +123,7 @@ function getWords(str){
 // テスト
 function myFunction() {
   // h-
-  console.log(getWords("【さかうらみ】｛３、｝"));
+  console.log(getWords("a-and?"));
 }
 
 function doPost(e){
