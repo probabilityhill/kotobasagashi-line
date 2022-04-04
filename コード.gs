@@ -117,13 +117,17 @@ function getWords(str){
   if(resultArray.length === 0){
     return "みつからなかった😣"
   }
-  return "「"+resultArray.join(", ")+"」がみつかったよ😊";
+  const resultText = "「"+resultArray.join(", ")+"」がみつかったよ😊";
+  if(resultText.length > 2000){
+    return "いっぱいあってさがしきれないよ😵";
+  }
+  return resultText;
 }
 
 // テスト
 function myFunction() {
   // h-
-  console.log(getWords("a-and?"));
+  console.log(getWords("~じゅ~"));
 }
 
 function doPost(e){
