@@ -46,6 +46,9 @@ const btnList = {
             "type": "separator"
           },
           {
+            "type": "separator"
+          },
+          {
             "type": "button",
             "action": {
               "type": "postback",
@@ -56,6 +59,9 @@ const btnList = {
             "flex": 5
           }
         ]
+      },
+      {
+        "type": "separator"
       },
       {
         "type": "separator"
@@ -79,6 +85,9 @@ const btnList = {
         "type": "separator"
       },
       {
+        "type": "separator"
+      },
+      {
         "type": "box",
         "layout": "horizontal",
         "contents": [
@@ -95,6 +104,9 @@ const btnList = {
             "type": "separator"
           },
           {
+            "type": "separator"
+          },
+          {
             "type": "button",
             "action": {
               "type": "postback",
@@ -104,6 +116,9 @@ const btnList = {
             "color": "#FFFFFF"
           }
         ]
+      },
+      {
+        "type": "separator"
       },
       {
         "type": "separator"
@@ -126,6 +141,9 @@ const btnList = {
             "type": "separator"
           },
           {
+            "type": "separator"
+          },
+          {
             "type": "button",
             "action": {
               "type": "postback",
@@ -136,6 +154,9 @@ const btnList = {
             "flex": 5
           }
         ]
+      },
+      {
+        "type": "separator"
       },
       {
         "type": "separator"
