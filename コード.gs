@@ -21,6 +21,138 @@ const rule = {
   }
 };
 
+const btnList = {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Xを含む",
+              "data": "include-x"
+            },
+            "color": "#FFFFFF",
+            "flex": 3
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "X , Y , ... で構成される",
+              "data": "consist-of-x"
+            },
+            "color": "#FFFFFF",
+            "flex": 5
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "XとYを含む",
+              "data": "include-x-and-y"
+            },
+            "color": "#FFFFFF"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Xを含まない",
+              "data": "not-include-a-b"
+            },
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "data": "include-x-or-y",
+              "label": "XまたはYを含む"
+            },
+            "color": "#FFFFFF",
+            "flex": 4
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Xを含むがYを含まない",
+              "data": "include-x-not-y"
+            },
+            "color": "#FFFFFF",
+            "flex": 5
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "X , Y , ... 以外で構成される",
+              "data": "consist-of-not-x"
+            },
+            "color": "#FFFFFF"
+          }
+        ]
+      }
+    ],
+    "paddingAll": "none"
+  },
+  "styles": {
+    "body": {
+      "backgroundColor": "#375e97"
+    }
+  }
+};
+
+// テスト
+function myFunction() {
+  // h-
+  console.log(getWords("~じゅ~"));
+}
+
 /*
 ・注意事項
 入力はひらがな, 漢字, アルファベット小文字のいずれか
@@ -42,38 +174,23 @@ a- → アルファベットのみ
 ,（カンマ）, 、（読点）
 /（スラッシュ）, ・（中黒）
 
+（{n,} = n文字以上, {n,m} = n文字以上m文字以下）
+
 - 文字数を限定する
-aで始まる → a...
-bで終わる → ...b
-aで始まりbで終わる → a..b
-aを含む → .a..
-aを含む → (~a)...（.の数 = 全体の文字数）
-aとbを含む → (~a)(~b)...（.の数 = 全体の文字数）
-aを含むがbを含まない → (~a)(!~b)...
-aの繰り返しを含む → .a{n}..（{n,} = n文字以上, {n,m} = n文字以上m文字以下）
-a,b,cで構成される → [abc]{n}
-a,b,c以外の文字で構成される → [^abc]{n}
-aまたはbで始まる → (a/b)...
-aまたはbで終わる → ...(a/b)
-aまたはbで始まりcまたはdで終わる → (a/b)..(c/d)
-aまたはbを含む → .(a/b)..
-aまたはbを含む → (~(a/b)~)...（.の数 = 全体の文字数）
+-aを含む → (~a)...（.の数 = 全体の文字数）
+-aとbを含む → (~a)(~b)...（.の数 = 全体の文字数）
+-aを含むがbを含まない → (~a)(!~b)...
+
+-a,b,cで構成される → [abc]{n}
+-a,b,c以外の文字で構成される → [^abc]{n}
+-aまたはbを含む → (~(a/b)~)...（.の数 = 全体の文字数）
 
 - 文字数を限定しない
-aで始まる → a~
-bで終わる → ~b
-aで始まりbで終わる → a~b
-aを含む → ~a~
-aを含まない → (!~a)~
-aとbを含む → (~a)(~b)~
-aを含むがbを含まない → (~a)(!~b)~
-aの繰り返しを含む → ~a{n}~
-a,b,cで構成される → [abc]
-a,b,c以外の文字で構成される → [^abc]
-aまたはbで始まる → (a/b)~
-aまたはbで終わる → ~(a/b)
-aまたはbで始まりcまたはdで終わる → (a/b)~(c/d)
-aまたはbを含む → ~(a/b)~
+-aを含まない → (!~a)~
+-aとbを含む → (~a)(~b)~
+-aを含むがbを含まない → (~a)(!~b)~
+-a,b,cで構成される → [abc]
+-a,b,c以外の文字で構成される → [^abc]
 */
 
 function getWords(str){
@@ -126,11 +243,7 @@ function getWords(str){
   return resultText;
 }
 
-// テスト
-function myFunction() {
-  // h-
-  console.log(getWords("~じゅ~"));
-}
+
 
 function doPost(e){
   var event = JSON.parse(e.postData.contents).events[0];
@@ -149,6 +262,9 @@ function doPost(e){
       "altText":"rule",
       "contents":rule
     }];
+  }
+  else if(eventType === "postback"){
+    
   }
   else if(eventType === "message"){
     if(event.message.type === "text"){
