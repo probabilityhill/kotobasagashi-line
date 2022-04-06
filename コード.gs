@@ -68,6 +68,24 @@ const btnList = {
             "type": "button",
             "action": {
               "type": "postback",
+              "label": "X , Y , ... で構成される（N～M文字）",
+              "data": "consist-of-x-limited"
+            },
+            "color": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
               "label": "XとYを含む",
               "data": "include-x-and-y"
             },
