@@ -1,9 +1,11 @@
 const scriptProperties = PropertiesService.getScriptProperties();
 const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN');
 
-const wordsId = '1BiDeYFDhD4aXT7hIag_L0uJuOiSY84_s';
+const wordsId = "1BiDeYFDhD4aXT7hIag_L0uJuOiSY84_s";
 const wordsFile = DriveApp.getFileById(wordsId);
 const wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split(",");
+
+const sheetId = "1Uo9_SrTYmpS8e8CqXTkFzO4h90BGVlWW1IOaVPtKn9o";
 
 const rule = {
   "type": "bubble",
@@ -132,16 +134,19 @@ function myFunction() {
 
 function doPost(e){
   var event = JSON.parse(e.postData.contents).events[0];
-  var reply_token = event.replyToken;
+  var eventType = event.type;
+  var replyToken = event.replyToken;
+  var userId = event.source.userId;
 
-  if(event.type === "follow"){
+  if(eventType === "follow"){
+    var data = SpreadsheetApp.openById(sheetId).getSheets[0];  // シートを取得
     var messages = [{
       "type":"flex",
       "altText":"rule",
       "contents":rule
     }];
   }
-  else if(event.type === "message"){
+  else if(eventType === "message"){
     if(event.message.type === "text"){
       var text = event.message.text;
 
@@ -173,10 +178,10 @@ function doPost(e){
       }
     }
   }
-  sendReplyMessage(reply_token, messages); 
+  sendReplyMessage(replyToken, messages); 
 }
 
-function sendReplyMessage(reply_token, messages){
+function sendReplyMessage(replyToken, messages){
   var url = 'https://api.line.me/v2/bot/message/reply';
   var res = UrlFetchApp.fetch(url, {
     'headers': {
@@ -185,7 +190,7 @@ function sendReplyMessage(reply_token, messages){
     },
     'method': 'post',
     'payload': JSON.stringify({
-      'replyToken': reply_token,
+      'replyToken': replyToken,
       'messages': messages 
     }),
   });
