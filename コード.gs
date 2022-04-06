@@ -565,38 +565,42 @@ const btnList = {
         "layout": "horizontal",
         "contents": [
           {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "Xを含む",
-              "data": "include-x"
-            },
-            "color": "#FFFFFF",
-            "flex": 3
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "Xを含む",
+                  "data": "include-x"
+                },
+                "color": "#FFFFFF"
+              }
+            ],
+            "flex": 3,
+            "borderColor": "#FFFFFF",
+            "borderWidth": "light"
           },
           {
-            "type": "separator"
-          },
-          {
-            "type": "separator"
-          },
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "X , Y , ... で構成される",
-              "data": "consist-of-x"
-            },
-            "color": "#FFFFFF",
-            "flex": 5
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "X , Y , ... で構成される",
+                  "data": "consist-of-x"
+                },
+                "color": "#FFFFFF"
+              }
+            ],
+            "flex": 5,
+            "borderColor": "#FFFFFF",
+            "borderWidth": "light"
           }
         ]
-      },
-      {
-        "type": "separator"
-      },
-      {
-        "type": "separator"
       },
       {
         "type": "box",
@@ -611,87 +615,91 @@ const btnList = {
             },
             "color": "#FFFFFF"
           }
-        ]
-      },
-      {
-        "type": "separator"
-      },
-      {
-        "type": "separator"
+        ],
+        "borderColor": "#FFFFFF",
+        "borderWidth": "light"
       },
       {
         "type": "box",
         "layout": "horizontal",
         "contents": [
           {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "XとYを含む",
-              "data": "include-x-and-y"
-            },
-            "color": "#FFFFFF"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "XとYを含む",
+                  "data": "include-x-and-y"
+                },
+                "color": "#FFFFFF"
+              }
+            ],
+            "borderColor": "#FFFFFF",
+            "borderWidth": "light"
           },
           {
-            "type": "separator"
-          },
-          {
-            "type": "separator"
-          },
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "Xを含まない",
-              "data": "not-include-a-b"
-            },
-            "color": "#FFFFFF"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "Xを含まない",
+                  "data": "not-include-a-b"
+                },
+                "color": "#FFFFFF"
+              }
+            ],
+            "borderColor": "#FFFFFF",
+            "borderWidth": "light"
           }
         ]
-      },
-      {
-        "type": "separator"
-      },
-      {
-        "type": "separator"
       },
       {
         "type": "box",
         "layout": "horizontal",
         "contents": [
           {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "data": "include-x-or-y",
-              "label": "XまたはYを含む"
-            },
-            "color": "#FFFFFF",
-            "flex": 4
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "data": "include-x-or-y",
+                  "label": "XまたはYを含む"
+                },
+                "color": "#FFFFFF"
+              }
+            ],
+            "flex": 4,
+            "borderColor": "#FFFFFF",
+            "borderWidth": "light"
           },
           {
-            "type": "separator"
-          },
-          {
-            "type": "separator"
-          },
-          {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "Xを含むがYを含まない",
-              "data": "include-x-not-y"
-            },
-            "color": "#FFFFFF",
-            "flex": 5
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "postback",
+                  "label": "Xを含むがYを含まない",
+                  "data": "include-x-not-y"
+                },
+                "color": "#FFFFFF"
+              }
+            ],
+            "flex": 5,
+            "borderColor": "#FFFFFF",
+            "borderWidth": "light"
           }
         ]
-      },
-      {
-        "type": "separator"
-      },
-      {
-        "type": "separator"
       },
       {
         "type": "box",
@@ -706,10 +714,14 @@ const btnList = {
             },
             "color": "#FFFFFF"
           }
-        ]
+        ],
+        "borderColor": "#FFFFFF",
+        "borderWidth": "light"
       }
     ],
-    "paddingAll": "none"
+    "paddingAll": "none",
+    "borderColor": "#FFFFFF",
+    "borderWidth": "light"
   },
   "styles": {
     "body": {
