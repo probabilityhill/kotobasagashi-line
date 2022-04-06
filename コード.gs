@@ -841,17 +841,13 @@ function doPost(e){
 
     var messages = [
       {
-        "type":"text",
-        "text":"ルールだよ！",
-      },
-      {
       "type":"flex",
       "altText":"rule",
       "contents":rule
       },
       {
         "type":"text",
-        "text":"ボタンパネルだよ！",
+        "text":"↓これがボタンパネルだよ！",
       },
       {
       "type":"flex",
@@ -861,6 +857,9 @@ function doPost(e){
     ];
   }
   else if(eventType === "postback"){
+    var pbData = event.postback.data;
+    var userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
+    data.getRange(userIdRow,2).setValue(pbData);  // 2列目にpbDataを記入
     
   }
   else if(eventType === "message"){
