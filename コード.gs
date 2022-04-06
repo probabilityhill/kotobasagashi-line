@@ -139,7 +139,11 @@ function doPost(e){
   var userId = event.source.userId;
 
   if(eventType === "follow"){
-    var data = SpreadsheetApp.openById(sheetId).getSheets[0];  // シートを取得
+    var data = SpreadsheetApp.openById(sheetId).getSheets()[0];  // シートを取得
+    var lastRow = data.getLastRow();  // 最終行取得
+    data.getRange(lastRow+1,1).setValue(userId);  // A列目にユーザID記入
+    data.getDataRange().removeDuplicates([1]);  // ユーザIDの重複を削除
+
     var messages = [{
       "type":"flex",
       "altText":"rule",
