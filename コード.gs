@@ -839,11 +839,26 @@ function doPost(e){
     data.getRange(lastRow+1,1).setValue(userId);  // A列目にユーザID記入
     data.getDataRange().removeDuplicates([1]);  // ユーザIDの重複を削除
 
-    var messages = [{
+    var messages = [
+      {
+        "type":"text",
+        "text":"ルールだよ！",
+      },
+      {
       "type":"flex",
       "altText":"rule",
       "contents":rule
-    }];
+      },
+      {
+        "type":"text",
+        "text":"ボタンパネルだよ！",
+      },
+      {
+      "type":"flex",
+      "altText":"rule",
+      "contents":btnList
+      }
+    ];
   }
   else if(eventType === "postback"){
     
