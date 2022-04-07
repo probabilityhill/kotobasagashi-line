@@ -1100,37 +1100,72 @@ function doPost(e){
     const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
     data.getRange(userIdRow,2).setValue(pbData);  // B列目にpbDataを記入
     let text = null;
+    let input = "X Y N TYPE";
 
     switch(pbData){
       case("include-x"):
-        text = "Xを含む：X N TYPE";
+        text = "Xを含む";
+        input = "X N TYPE";
         break;
       case("consist-of-x"):
-        text = "XY... N TYPE";
+        text = "XY…で構成される";
+        input = "XY… N TYPE";
         break;
       case("consist-of-x-limited"):
-        text = "XY... M N TYPE";
+        text = "XY…で構成される(M~N文字)";
+        input = "XY… M N TYPE";
         break;
       case("include-x-and-y"):
-        text = "X Y N TYPE";
+        text = "XとYを含む";
         break;
       case("not-include-x"):
-        text = "X N TYPE";
+        text = "Xを含まない";
+        input = "X N TYPE";        
         break;
       case("include-x-or-y"):
-        text = "X Y N TYPE";
+        text = "XまたはYを含む";
         break;
       case("include-x-not-y"):
-        text = "X Y N TYPE";
+        text = "Xを含むがYを含まない";
         break;
       case("consist-of-not-x"):
-        text = "XY... N TYPE";
+        text = "XY…以外で構成される";
+        input = "XY… N TYPE";
         break;
     }
     const messages = [
       {
-        "type":"text",
-        "text":text
+        "type":"flex",
+        "altText":"入力形式",
+        "contents":{
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "weight": "bold",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": input+"　",
+                    "size": "xs",
+                    "color": "#375e97"
+                  },
+                  {
+                    "type": "span",
+                    "size": "xxs",
+                    "color": "#BBBBBB",
+                    "text": text
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "md",
+            "paddingStart": "lg"
+          }
+        }
       }
     ];
     sendReplyMessage(replyToken, messages); 
