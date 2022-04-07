@@ -1103,7 +1103,7 @@ function doPost(e){
 
     switch(pbData){
       case("include-x"):
-        text = "X N TYPE";
+        text = "Xを含む：X N TYPE";
         break;
       case("consist-of-x"):
         text = "XY... N TYPE";
