@@ -819,45 +819,112 @@ a- → アルファベットのみ
 -a,b,c以外の文字で構成される → [^abc]
 */
 
-function getWords(str){
-  str = str.replace(/〜/g, "~").replace(/～/g, "~").replace(/【(.+)】/g, "[$1]").replace(/（(.+)）/g, "($1)").replace(/｛(.+)｝/g, "{$1}").replace(/、/g, ",").replace(/・/g, "/").replace(/。/g, ".")  // 記号の置換
-  str = str.replace(/\?/g, ".") .replace(/？/g, ".");  // １文字
+function simpleSearch(str){
+  str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／/g, "/").replace(/ー|‐/g, "-")  // 記号の置換
+  str = str.replace(/\?|？|．|。/g, ".");  // １文字
   str = str.replace(/~/g, ".*");  // 含む .*a.*
-  str = str.replace(/\]$/g, "]+");  // 構成する []+
-  str = str.replace(/\(/g, "(?=");  // 肯定先読み (?=~)
-  str = str.replace(/\=\!/g, "!");  // 否定先読み　(?!~)~
   str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
-  str = str.replace(/\(\.\*\(\?\=(.+\/.+)\)\.\*\)/g, "(?=.*($1).*)")  // またはを含む (~(a|b)~)..
-  str = str.replace(/\//g, "|");  // または (a|b)
-  str = str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);  // 全角→半角
-  });
+  str = getHalfWidth(str);  // 全角→半角
 
-  console.log(str);  // CHECK
   if(/\-/.test(str)){
     let strArray = str.split("-");
     let head = strArray[0];
     str = strArray[1];
 
-    if(head === "a"){
-      var headRgx = /[a-z]+/;
-    }
-    else if(head === "k"){
-      var headRgx = /^[\u3005-\u3006\u4E00-\u9FFF]+$/;
-    }
-    else{
-      // head === "hk"
-      var headRgx = /^[\u3040-\u309F\u3005-\u3006\u4E00-\u9FFF]+$/;
-    }
+    var headRgx = getFilterRgx(head);
   }
   else{
-    var headRgx = /^[\u3040-\u309F]+$/;
+    // ひらがな
+    var headRgx = getFilterRgx("ひ");
   }
+
+  return getWords(str, headRgx);
+}
+
+function advancedSearch(pbData, array){
+  let strRgx = null;
+  const filterRgx = getFilterRgx(array.slice(-1)[0]);  // 文字種フィルター
+
+  for(var i = 0; i < array.length-2; i++){
+    array[i] = getHalfWidth(array[i]);  // 全角→半角
+  }
+  switch(pbData){
+    case("include-x"):
+      const X = array[0];
+      const N = array[1];
+      if(N === "n"){
+        strRgx = ".*"+X+".*";
+      }
+      else{
+        strRgx = "(?="+X+")"+".".repeat(Number(N));
+      }
+      text = "X N TYPE";
+      break;
+    case("consist-of-x"):
+      text = "XY... N TYPE";
+      break;
+    case("consist-of-x-limited"):
+      text = "XY... M N TYPE";
+      break;
+    case("include-x-and-y"):
+      text = "X Y N TYPE";
+      break;
+    case("not-include-x"):
+      text = "X N TYPE";
+      break;
+    case("include-x-or-y"):
+      text = "X Y N TYPE";
+      break;
+    case("include-x-not-y"):
+      text = "X Y N TYPE";
+      break;
+    case("consist-of-not-x"):
+      text = "XY... N TYPE";
+      break;
+  }
+  
+  return getWords(strRgx, filterRgx);
+}
+
+function getHalfWidth(str){
+  // 全角→半角
+  return str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  });
+}
+
+function getFilterRgx(type){
+  if(type === "ひ"){
+    return /^[\u3040-\u309F]+$/;
+  }
+  else if(type === "a"){
+    return /[a-z]+/;
+  }
+  else if(type === "漢字"){
+    return /^[\u3005-\u3006\u4E00-\u9FFF]+$/;
+  }
+  else{
+    // type === "ひ漢字"
+    return /^[\u3040-\u309F\u3005-\u3006\u4E00-\u9FFF]+$/;
+  }
+  
+}
+
+function getWords(str, filterRgx){
+  /*
+  str = str.replace(/\]$/g, "]+");  // 構成する []+
+  str = str.replace(/\(/g, "(?=");  // 肯定先読み (?=~)
+  str = str.replace(/\=\!/g, "!");  // 否定先読み　(?!~)~
+  str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
+  str = str.replace(/\(\.\*\(\?\=(.+\/.+)\)\.\*\)/g, "(?=.*($1).*)")  // またはを含む (~(a|b)~)..
+  */
+
+  console.log(str);  // CHECK
 
   str = "/^" + str + "$/";
 
   let resultArray = wordsArray.filter(RegExp.prototype.test,eval(str));
-  resultArray = resultArray.filter(RegExp.prototype.test,eval(headRgx));  // 文字種フィルタ
+  resultArray = resultArray.filter(RegExp.prototype.test,eval(filterRgx));  // 文字種フィルタ
 
   if(resultArray.length === 0){
     return "みつからなかった😣"
@@ -869,6 +936,10 @@ function getWords(str){
   return resultText;
 }
 
+
+function tmp(){
+  console.log(advancedSearch("include-x", ["こうや", "n", "ひ"]));
+}
 
 
 function doPost(e){
@@ -903,7 +974,7 @@ function doPost(e){
   else if(eventType === "postback"){
     const pbData = event.postback.data;
     const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
-    data.getRange(userIdRow,2).setValue(pbData);  // 2列目にpbDataを記入
+    data.getRange(userIdRow,2).setValue(pbData);  // B列目にpbDataを記入
     let text = null;
 
     switch(pbData){
@@ -945,8 +1016,8 @@ function doPost(e){
       const text = event.message.text;
       let messages = null;
 
-      switch(text){
-        case("ルール"):
+      switch(true){
+        case(/^ルール$/.test(text)):
           messages = [{
             "type":"flex",
             "altText":"ルール",
@@ -954,7 +1025,7 @@ function doPost(e){
             "quickReply": quickReply
             }];
           break;
-        case("ボタン"):
+        case(/^ボタン$/.test(text)):
           messages = [{
             "type":"flex",
             "altText":"ボタンパネル",
@@ -962,10 +1033,22 @@ function doPost(e){
             "quickReply": quickReply
             }];
           break;
-        default:
+        case(/.*(\s|\u3000).*/.test(text)):
+          // 高度な検索
+          const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
+          const pbData = data.getRange(userIdRow,2).getValue();  // B列目のpbDataを取得       
+          const textArray = text.split(/\s|\u3000/);  // 空白で分割
           messages = [{
             "type":"text",
-            "text":getWords(text),
+            "text":advancedSearch(pbData, textArray),
+            "quickReply": quickReply
+          }];
+          break;
+        default:
+          // シンプルな検索
+          messages = [{
+            "type":"text",
+            "text":simpleSearch(text),
             "quickReply": quickReply
           }];
       }
