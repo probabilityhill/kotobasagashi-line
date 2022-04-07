@@ -752,6 +752,27 @@ const btnList = {
   }
 };
 
+const quickReply = {
+  "items": [
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "ルール",
+        "text": "ルール"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "ボタン",
+        "text": "ボタン"
+      }
+    }
+  ]
+};
+
 // テスト
 function myFunction() {
   // h-
@@ -929,32 +950,23 @@ function doPost(e){
           messages = [{
             "type":"flex",
             "altText":"ルール",
-            "contents":rule
+            "contents":rule,
+            "quickReply": quickReply
             }];
           break;
         case("ボタン"):
           messages = [{
             "type":"flex",
             "altText":"ボタンパネル",
-            "contents":btnList
+            "contents":btnList,
+            "quickReply": quickReply
             }];
           break;
         default:
           messages = [{
             "type":"text",
             "text":getWords(text),
-            "quickReply": {
-              "items": [
-                {
-                  "type": "action",
-                  "action": {
-                    "type": "message",
-                    "label": "ルール",
-                    "text": "ルール"
-                  }
-                }
-              ]
-            }
+            "quickReply": quickReply
           }];
       }
       sendReplyMessage(replyToken, messages); 
