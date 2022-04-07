@@ -780,7 +780,8 @@ const btnList = {
               }
             ],
             "borderColor": "#FFFFFF",
-            "borderWidth": "light"
+            "borderWidth": "light",
+            "flex": 4
           },
           {
             "type": "box",
@@ -790,14 +791,15 @@ const btnList = {
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "label": "Xを含まない",
-                  "data": "not-include-x"
+                  "data": "include-x-or-y",
+                  "label": "XまたはYを含む"
                 },
                 "color": "#FFFFFF"
               }
             ],
             "borderColor": "#FFFFFF",
-            "borderWidth": "light"
+            "borderWidth": "light",
+            "flex": 5
           }
         ]
       },
@@ -813,15 +815,15 @@ const btnList = {
                 "type": "button",
                 "action": {
                   "type": "postback",
-                  "data": "include-x-or-y",
-                  "label": "XまたはYを含む"
+                  "label": "Xを含まない",
+                  "data": "not-include-x"
                 },
                 "color": "#FFFFFF"
               }
             ],
-            "flex": 4,
             "borderColor": "#FFFFFF",
-            "borderWidth": "light"
+            "borderWidth": "light",
+            "flex": 3
           },
           {
             "type": "box",
@@ -837,9 +839,9 @@ const btnList = {
                 "color": "#FFFFFF"
               }
             ],
-            "flex": 5,
             "borderColor": "#FFFFFF",
-            "borderWidth": "light"
+            "borderWidth": "light",
+            "flex": 5
           }
         ]
       },
