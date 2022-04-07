@@ -610,7 +610,7 @@ const btnList = {
             "type": "button",
             "action": {
               "type": "postback",
-              "label": "X , Y , ... で構成される（N～M文字）",
+              "label": "X , Y , ... で構成される（M～N文字）",
               "data": "consist-of-x-limited"
             },
             "color": "#FFFFFF"
@@ -649,7 +649,7 @@ const btnList = {
                 "action": {
                   "type": "postback",
                   "label": "Xを含まない",
-                  "data": "not-include-a-b"
+                  "data": "not-include-x"
                 },
                 "color": "#FFFFFF"
               }
@@ -857,14 +857,48 @@ function doPost(e){
     ];
   }
   else if(eventType === "postback"){
-    var pbData = event.postback.data;
-    var userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
+    const pbData = event.postback.data;
+    const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
     data.getRange(userIdRow,2).setValue(pbData);  // 2列目にpbDataを記入
-    
+    const text = "";
+
+    switch(pbData){
+      case("include-x"):
+        text = "X N TYPE";
+        break;
+      case("consist-of-x"):
+        text = "XY... N TYPE";
+        break;
+      case("consist-of-x-limited"):
+        text = "XY... M N TYPE";
+        break;
+      case("include-x-and-y"):
+        text = "X Y N TYPE";
+        break;
+      case("not-include-x"):
+        text = "X N TYPE";
+        break;
+      case("include-x-or-y"):
+        text = "X Y N TYPE";
+        break;
+      case("include-x-not-y"):
+        text = "X Y N TYPE";
+        break;
+      case("consist-of-not-x"):
+        text = "XY... N TYPE";
+        break;
+    }
+    const messages = [
+      {
+        "type":"text",
+        "text":text
+      }
+    ];
+    sendReplyMessage(replyToken, messages); 
   }
   else if(eventType === "message"){
     if(event.message.type === "text"){
-      var text = event.message.text;
+      const text = event.message.text;
 
       switch(text){
         case("ルール"):
