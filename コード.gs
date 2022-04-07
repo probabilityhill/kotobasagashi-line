@@ -839,7 +839,7 @@ function doPost(e){
     data.getRange(lastRow+1,1).setValue(userId);  // A列目にユーザID記入
     data.getDataRange().removeDuplicates([1]);  // ユーザIDの重複を削除
 
-    var messages = [
+    const messages = [
       {
       "type":"flex",
       "altText":"rule",
@@ -855,12 +855,13 @@ function doPost(e){
       "contents":btnList
       }
     ];
+    sendReplyMessage(replyToken, messages); 
   }
   else if(eventType === "postback"){
     const pbData = event.postback.data;
     const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
     data.getRange(userIdRow,2).setValue(pbData);  // 2列目にpbDataを記入
-    const text = "";
+    let text = null;
 
     switch(pbData){
       case("include-x"):
@@ -899,17 +900,25 @@ function doPost(e){
   else if(eventType === "message"){
     if(event.message.type === "text"){
       const text = event.message.text;
+      let messages = null;
 
       switch(text){
         case("ルール"):
-          var messages = [{
+          messages = [{
             "type":"flex",
-            "altText":"rule",
+            "altText":"ルール",
             "contents":rule
             }];
           break;
+        case("ボタン"):
+          messages = [{
+            "type":"flex",
+            "altText":"ボタンパネル",
+            "contents":btnList
+            }];
+          break;
         default:
-          var messages = [{
+          messages = [{
             "type":"text",
             "text":getWords(text),
             "quickReply": {
@@ -926,9 +935,9 @@ function doPost(e){
             }
           }];
       }
+      sendReplyMessage(replyToken, messages); 
     }
   }
-  sendReplyMessage(replyToken, messages); 
 }
 
 function sendReplyMessage(replyToken, messages){
