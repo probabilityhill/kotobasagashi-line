@@ -532,6 +532,28 @@ const rule = {
                         "flex": 5
                       }
                     ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "TYPE = ひ漢字",
+                        "align": "start",
+                        "size": "sm",
+                        "flex": 3
+                      },
+                      {
+                        "type": "text",
+                        "text": "（ひらがな・漢字）",
+                        "align": "end",
+                        "size": "xs",
+                        "weight": "bold",
+                        "color": "#B8B8B8",
+                        "flex": 5
+                      }
+                    ]
                   }
                 ],
                 "paddingAll": "sm"
