@@ -10,6 +10,7 @@ const data = SpreadsheetApp.openById(sheetId).getSheets()[0];  // シートを�
 
 const rule = {
   "type": "bubble",
+  "size": "giga",
   "header": {
     "type": "box",
     "layout": "vertical",
@@ -76,7 +77,7 @@ const rule = {
             "contents": [
               {
                 "type": "text",
-                "text": "記号の説明",
+                "text": "記号について",
                 "weight": "bold",
                 "color": "#375e97"
               }
@@ -148,6 +149,126 @@ const rule = {
                     "size": "xs",
                     "weight": "bold",
                     "color": "#B8B8B8"
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "none"
+          }
+        ],
+        "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "color": "#375e97",
+        "margin": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "文字種フィルター",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "先頭に何もつけない",
+                    "align": "start",
+                    "size": "sm",
+                    "flex": 5
+                  },
+                  {
+                    "type": "text",
+                    "text": "（ひらがな）",
+                    "align": "end",
+                    "size": "xs",
+                    "weight": "bold",
+                    "color": "#B8B8B8",
+                    "flex": 3
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "先頭に「漢字-」をつける",
+                    "align": "start",
+                    "size": "sm",
+                    "flex": 5
+                  },
+                  {
+                    "type": "text",
+                    "text": "（漢字）",
+                    "align": "end",
+                    "size": "xs",
+                    "weight": "bold",
+                    "color": "#B8B8B8",
+                    "flex": 2
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "先頭に「ひ漢字-」をつける",
+                    "align": "start",
+                    "size": "sm",
+                    "flex": 5
+                  },
+                  {
+                    "type": "text",
+                    "text": "（ひらがな・漢字）",
+                    "align": "end",
+                    "size": "xs",
+                    "weight": "bold",
+                    "color": "#B8B8B8",
+                    "flex": 3
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "先頭に「a-」をつける",
+                    "align": "start",
+                    "flex": 5,
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "（アルファベット）",
+                    "align": "end",
+                    "size": "xs",
+                    "weight": "bold",
+                    "color": "#B8B8B8",
+                    "flex": 3
                   }
                 ]
               }
@@ -473,28 +594,6 @@ const rule = {
                     "contents": [
                       {
                         "type": "text",
-                        "text": "TYPE = a",
-                        "align": "start",
-                        "size": "sm",
-                        "flex": 3
-                      },
-                      {
-                        "type": "text",
-                        "text": "（アルファベット）",
-                        "align": "end",
-                        "size": "xs",
-                        "weight": "bold",
-                        "color": "#B8B8B8",
-                        "flex": 5
-                      }
-                    ]
-                  },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "text",
                         "text": "TYPE = ひ",
                         "align": "start",
                         "flex": 3,
@@ -554,6 +653,28 @@ const rule = {
                         "flex": 5
                       }
                     ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "TYPE = a",
+                        "align": "start",
+                        "size": "sm",
+                        "flex": 3
+                      },
+                      {
+                        "type": "text",
+                        "text": "（アルファベット）",
+                        "align": "end",
+                        "size": "xs",
+                        "weight": "bold",
+                        "color": "#B8B8B8",
+                        "flex": 5
+                      }
+                    ]
                   }
                 ],
                 "paddingAll": "sm"
@@ -567,7 +688,6 @@ const rule = {
     ],
     "paddingAll": "none"
   },
-  "size": "giga",
   "styles": {
     "header": {
       "backgroundColor": "#375e97"
@@ -779,46 +899,6 @@ function myFunction() {
   console.log(getWords("~じゅ~"));
 }
 
-/*
-・注意事項
-入力はひらがな, 漢字, アルファベット小文字のいずれか
-全角英数字は半角英数字に変換される
-
-・ルール
--文字種フィルター
-何もなし → ひらがなのみ
-k- → 漢字のみ
-hk- → ひらがなと漢字のみ
-a- → アルファベットのみ
-
-・書き換え可能な記号
-.（ピリオド）,。（句点）, ?（半角はてな）, ？（全角はてな）
-~（半角チルダ）, 〜（波ダッシュ）, ～（全角チルダ）
-()（半角括弧）, （）（全角括弧）
-[]（角括弧）, 【】（隅付き括弧）
-{}（波括弧）, ｛｝（全角波括弧）
-,（カンマ）, 、（読点）
-/（スラッシュ）, ・（中黒）
-
-（{n,} = n文字以上, {n,m} = n文字以上m文字以下）
-
-- 文字数を限定する
--aを含む → (~a)...（.の数 = 全体の文字数）
--aとbを含む → (~a)(~b)...（.の数 = 全体の文字数）
--aを含むがbを含まない → (~a)(!~b)...
-
--a,b,cで構成される → [abc]{n}
--a,b,c以外の文字で構成される → [^abc]{n}
--aまたはbを含む → (~(a/b)~)...（.の数 = 全体の文字数）
-
-- 文字数を限定しない
--aを含まない → (!~a)~
--aとbを含む → (~a)(~b)~
--aを含むがbを含まない → (~a)(!~b)~
--a,b,cで構成される → [abc]
--a,b,c以外の文字で構成される → [^abc]
-*/
-
 function simpleSearch(str){
   str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／/g, "/").replace(/ー|‐/g, "-")  // 記号の置換
   str = str.replace(/\?|？|．|。/g, ".");  // １文字
@@ -850,36 +930,83 @@ function advancedSearch(pbData, array){
   }
   switch(pbData){
     case("include-x"):
-      const X = array[0];
-      const N = array[1];
+      var X = array[0];
+      var N = array[1];
       if(N === "n"){
         strRgx = ".*"+X+".*";
       }
       else{
         strRgx = "(?="+X+")"+".".repeat(Number(N));
       }
-      text = "X N TYPE";
       break;
     case("consist-of-x"):
-      text = "XY... N TYPE";
+      var X = array[0];
+      var N = array[1];
+      if(N === "n"){
+        strRgx = "["+X+"]+";
+      }
+      else{
+        strRgx = "["+X+"]{"+N+"}";
+      }
       break;
     case("consist-of-x-limited"):
-      text = "XY... M N TYPE";
+      var X = array[0];
+      var M = array[1];
+      var N = array[2];
+      strRgx = "["+X+"]{"+M+","+N+"}";
       break;
     case("include-x-and-y"):
-      text = "X Y N TYPE";
+      var X = array[0];
+      var Y = array[1];
+      var N = array[2];
+      if(N === "n"){
+        strRgx = "(?=.*"+X+")(?=.*"+Y+").*";
+      }
+      else{
+        strRgx = "(?=.*"+X+")(?=.*"+Y+")"+".".repeat(Number(N));
+      }
       break;
     case("not-include-x"):
-      text = "X N TYPE";
+      var X = array[0];
+      var N = array[1];
+      if(N === "n"){
+        strRgx = "(?!.*"+X+").*";
+      }
+      else{
+        strRgx = "(?!.*"+X+")"+".".repeat(Number(N));
+      }
       break;
     case("include-x-or-y"):
-      text = "X Y N TYPE";
+      var X = array[0];
+      var Y = array[1];
+      var N = array[2];
+      if(N === "n"){
+        strRgx = ".*("+X+"|"+Y+").*";
+      }
+      else{
+        strRgx = ".*("+X+"|"+Y+")"+".".repeat(Number(N));
+      }
       break;
     case("include-x-not-y"):
-      text = "X Y N TYPE";
+      var X = array[0];
+      var Y = array[1];
+      var N = array[2];
+      if(N === "n"){
+        strRgx = "(?=.*"+X+")(?!.*"+Y+").*";
+      }
+      else{
+        strRgx = "(?=.*"+X+")(?!.*"+Y+")"+".".repeat(Number(N));
+      }
       break;
     case("consist-of-not-x"):
-      text = "XY... N TYPE";
+      var X = array[0];
+      var N = array[1];
+      if(N === "n"){
+        strRgx = "[^"+X+"]+";
+      }
+      else{
+        strRgx = "[^"+X+"]{"+N+"}";
+      }
       break;
   }
   
@@ -911,13 +1038,6 @@ function getFilterRgx(type){
 }
 
 function getWords(str, filterRgx){
-  /*
-  str = str.replace(/\]$/g, "]+");  // 構成する []+
-  str = str.replace(/\(/g, "(?=");  // 肯定先読み (?=~)
-  str = str.replace(/\=\!/g, "!");  // 否定先読み　(?!~)~
-  str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
-  str = str.replace(/\(\.\*\(\?\=(.+\/.+)\)\.\*\)/g, "(?=.*($1).*)")  // またはを含む (~(a|b)~)..
-  */
 
   console.log(str);  // CHECK
 
@@ -938,7 +1058,7 @@ function getWords(str, filterRgx){
 
 
 function tmp(){
-  console.log(advancedSearch("include-x", ["かい", "n", "ひ"]));
+  console.log(advancedSearch("include-x", ["かい", "３", "ひ"]));
 }
 
 
@@ -947,16 +1067,18 @@ function doPost(e){
   const eventType = event.type;
   const replyToken = event.replyToken;
   const userId = event.source.userId;
+  const displayName = event.source.displayName;
 
   if(eventType === "follow"){
-    const lastRow = data.getLastRow();  // 最終行取得
-    data.getRange(lastRow+1,1).setValue(userId);  // A列目にユーザID記入
+    const writeRow = data.getLastRow()+1;  // 書く行取得
+    data.getRange(writeRow,1).setValue(userId);  // A列目にユーザID記入
+    //data.getRange(writeRow,3).setValue(displayName);  // C列目に表示名記入
     data.getDataRange().removeDuplicates([1]);  // ユーザIDの重複を削除
 
     const messages = [
       {
       "type":"flex",
-      "altText":"rule",
+      "altText":"ルール",
       "contents":rule
       },
       {
@@ -965,7 +1087,7 @@ function doPost(e){
       },
       {
       "type":"flex",
-      "altText":"rule",
+      "altText":"ボタンパネル",
       "contents":btnList
       }
     ];
