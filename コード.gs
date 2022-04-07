@@ -845,7 +845,7 @@ function advancedSearch(pbData, array){
   let strRgx = null;
   const filterRgx = getFilterRgx(array.slice(-1)[0]);  // 文字種フィルター
 
-  for(var i = 0; i < array.length-2; i++){
+  for(var i = 0; i < array.length; i++){
     array[i] = getHalfWidth(array[i]);  // 全角→半角
   }
   switch(pbData){
@@ -938,7 +938,7 @@ function getWords(str, filterRgx){
 
 
 function tmp(){
-  console.log(advancedSearch("include-x", ["こうや", "n", "ひ"]));
+  console.log(advancedSearch("include-x", ["かい", "n", "ひ"]));
 }
 
 
