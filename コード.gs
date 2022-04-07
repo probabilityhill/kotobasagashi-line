@@ -938,7 +938,7 @@ function advancedSearch(pbData, array){
         strRgx = ".*"+X+".*";
       }
       else{
-        strRgx = "(?="+X+")"+".".repeat(Number(N));
+        strRgx = "(?=.*"+X+")"+".".repeat(Number(N));
       }
       break;
     case("consist-of-x"):
@@ -986,7 +986,7 @@ function advancedSearch(pbData, array){
         strRgx = ".*("+X+"|"+Y+").*";
       }
       else{
-        strRgx = ".*("+X+"|"+Y+")"+".".repeat(Number(N));
+        strRgx = "(?=.*("+X+"|"+Y+").*)"+".".repeat(Number(N));
       }
       break;
     case("include-x-not-y"):
