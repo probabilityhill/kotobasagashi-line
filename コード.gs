@@ -1112,10 +1112,14 @@ function getWords(str, filterRgx){
 function tmp(){
   console.log(getWords(".{2,3}an", /[a-z]+/));
 }
-
-
 function doPost(e){
-  const event = JSON.parse(e.postData.contents).events[0];
+  const events = JSON.parse(e.postData.contents).events;
+  for (var i = 0; i < events.length; i++){
+    execute(events[i]);
+  }
+}
+
+function execute(event){
   const eventType = event.type;
   const replyToken = event.replyToken;
   const userId = event.source.userId;
