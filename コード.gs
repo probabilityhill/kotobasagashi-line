@@ -1108,9 +1108,30 @@ function getWords(str, filterRgx){
   return resultText;
 }
 
+function getUserName(){
+  const lastRow = data.getLastRow();  // 最終行取得
+  for(let i = 1; i <= lastRow; i++){
+    const userId = data.getRange(i,1).getValue();
+    const url = 'https://api.line.me/v2/bot/profile/' + userId;
+    const userProfile = UrlFetchApp.fetch(url,{
+      'headers': {
+        'Authorization' :  'Bearer ' + ACCESS_TOKEN,
+      },
+    })
+    data.getRange(i,3).setValue(JSON.parse(userProfile).displayName);    
+  }
+}
 
 function tmp(){
-  console.log(getWords(".{2,3}an", /[a-z]+/));
+  //console.log(getWords(".{2,3}an", /[a-z]+/));
+  const user_id = "U0849df5519a0678e4a8d150c24d8e5b8";
+  const url = 'https://api.line.me/v2/bot/profile/' + user_id;
+  const userProfile = UrlFetchApp.fetch(url,{
+    'headers': {
+      'Authorization' :  'Bearer ' + ACCESS_TOKEN,
+    },
+  })
+  console.log(JSON.parse(userProfile).displayName);
 }
 function doPost(e){
   const events = JSON.parse(e.postData.contents).events;
