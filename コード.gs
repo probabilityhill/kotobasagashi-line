@@ -58,6 +58,56 @@ const rule = {
                 ]
               }
             ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "・",
+                    "flex": 1,
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "アルファベットは小文字で入力してね！",
+                    "flex": 15,
+                    "wrap": true,
+                    "size": "sm"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "・",
+                    "flex": 1,
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "カタカナはひらがなに統一されているよ！",
+                    "flex": 15,
+                    "wrap": true,
+                    "size": "sm"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "paddingAll": "md"
@@ -938,7 +988,7 @@ function advancedSearch(pbData, array){
         strRgx = ".*"+X+".*";
       }
       else{
-        strRgx = "(?=.*"+X+")"+".".repeat(Number(N));
+        strRgx = "(?=.*"+X+").{"+N+"}";
       }
       break;
     case("consist-of-x"):
@@ -965,7 +1015,7 @@ function advancedSearch(pbData, array){
         strRgx = "(?=.*"+X+")(?=.*"+Y+").*";
       }
       else{
-        strRgx = "(?=.*"+X+")(?=.*"+Y+")"+".".repeat(Number(N));
+        strRgx = "(?=.*"+X+")(?=.*"+Y+").{"+N+"}";
       }
       break;
     case("not-include-x"):
@@ -975,7 +1025,7 @@ function advancedSearch(pbData, array){
         strRgx = "(?!.*"+X+").*";
       }
       else{
-        strRgx = "(?!.*"+X+")"+".".repeat(Number(N));
+        strRgx = "(?!.*"+X+").{"+N+"}";
       }
       break;
     case("include-x-or-y"):
@@ -986,7 +1036,7 @@ function advancedSearch(pbData, array){
         strRgx = ".*("+X+"|"+Y+").*";
       }
       else{
-        strRgx = "(?=.*("+X+"|"+Y+").*)"+".".repeat(Number(N));
+        strRgx = "(?=.*("+X+"|"+Y+").*).{"+N+"}";
       }
       break;
     case("include-x-not-y"):
@@ -997,7 +1047,7 @@ function advancedSearch(pbData, array){
         strRgx = "(?=.*"+X+")(?!.*"+Y+").*";
       }
       else{
-        strRgx = "(?=.*"+X+")(?!.*"+Y+")"+".".repeat(Number(N));
+        strRgx = "(?=.*"+X+")(?!.*"+Y+").{"+N+"}";
       }
       break;
     case("consist-of-not-x"):
@@ -1060,7 +1110,7 @@ function getWords(str, filterRgx){
 
 
 function tmp(){
-  console.log(advancedSearch("include-x", ["かい", "３", "ひ"]));
+  console.log(getWords(".{2,3}an", /[a-z]+/));
 }
 
 
