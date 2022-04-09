@@ -477,7 +477,7 @@ const rule = {
                     "contents": [
                       {
                         "type": "text",
-                        "text": "？？ばさ？し",
+                        "text": "。。。さが。",
                         "align": "center",
                         "size": "sm"
                       }
