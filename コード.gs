@@ -248,13 +248,35 @@ const rule = {
             "contents": [
               {
                 "type": "text",
-                "text": "XYXY → いろいろ, さらさら など",
-                "size": "sm"
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "XYXY",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → いろいろ, さらさら"
+                  }
+                ]
               },
               {
                 "type": "text",
-                "text": "?XY?XY → ちょうじょう, にゅうぎゅう など",
-                "size": "sm"
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "?XY?XY",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → ちょうじょう, にゅうぎゅう"
+                  }
+                ]
               }
             ],
             "paddingAll": "sm"
@@ -404,7 +426,7 @@ const rule = {
             "contents": [
               {
                 "type": "text",
-                "text": "「ことばさがし」がマッチする例",
+                "text": "入力例",
                 "weight": "bold",
                 "color": "#375e97"
               }
@@ -416,118 +438,56 @@ const rule = {
             "layout": "vertical",
             "contents": [
               {
-                "type": "box",
-                "layout": "horizontal",
+                "type": "text",
+                "size": "sm",
                 "contents": [
                   {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "？？ばさ？し",
-                        "align": "center",
-                        "size": "sm"
-                      }
-                    ],
-                    "backgroundColor": "#F4F6F9",
-                    "margin": "sm",
-                    "paddingAll": "xs"
+                    "type": "span",
+                    "text": "～うめ～",
+                    "weight": "bold",
+                    "color": "#6182B5"
                   },
                   {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "こ～が～",
-                        "align": "center",
-                        "size": "sm"
-                      }
-                    ],
-                    "backgroundColor": "#F4F6F9",
-                    "margin": "sm",
-                    "paddingAll": "xs"
+                    "type": "span",
+                    "text": " → そうめん, とうめい"
                   }
-                ],
-                "margin": "sm"
+                ]
               },
               {
-                "type": "box",
-                "layout": "horizontal",
+                "type": "text",
+                "size": "sm",
                 "contents": [
                   {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "~(ば/び)~",
-                        "align": "center",
-                        "size": "sm"
-                      }
-                    ],
-                    "backgroundColor": "#F4F6F9",
-                    "margin": "sm",
-                    "paddingAll": "xs"
+                    "type": "span",
+                    "text": "漢字ーX？X？",
+                    "weight": "bold",
+                    "color": "#6182B5"
                   },
                   {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "。。。さが。",
-                        "align": "center",
-                        "size": "sm"
-                      }
-                    ],
-                    "backgroundColor": "#F4F6F9",
-                    "margin": "sm",
-                    "paddingAll": "xs"
+                    "type": "span",
+                    "text": " → 一世一代, 不老不死"
                   }
-                ],
-                "margin": "sm"
+                ]
               },
               {
-                "type": "box",
-                "layout": "horizontal",
+                "type": "text",
+                "size": "sm",
                 "contents": [
                   {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "(け・こ)～(し・す)",
-                        "align": "center",
-                        "size": "sm"
-                      }
-                    ],
-                    "backgroundColor": "#F4F6F9",
-                    "margin": "sm",
-                    "paddingAll": "xs"
+                    "type": "span",
+                    "text": "a-?(a/o)?e",
+                    "weight": "bold",
+                    "color": "#6182B5"
                   },
                   {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "(か/こ).....",
-                        "align": "center",
-                        "size": "sm"
-                      }
-                    ],
-                    "backgroundColor": "#F4F6F9",
-                    "margin": "sm",
-                    "paddingAll": "xs"
+                    "type": "span",
+                    "text": " → bone, lake"
                   }
-                ],
-                "margin": "sm"
+                ]
               }
             ],
-            "paddingAll": "none"
+            "paddingAll": "none",
+            "paddingStart": "xs"
           }
         ],
         "paddingAll": "md"
@@ -792,6 +752,87 @@ const rule = {
               }
             ],
             "paddingAll": "none"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "・",
+                    "size": "sm",
+                    "color": "#6B84A9",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "span",
+                    "text": "入力例（ボタン押下後）",
+                    "size": "sm",
+                    "weight": "bold",
+                    "color": "#6B84A9"
+                  }
+                ]
+              }
+            ],
+            "paddingBottom": "sm",
+            "paddingTop": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "赤を含む三字熟語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "赤 ３ 漢字",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "かとみを含む４文字の単語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "か み ４ ひ",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "rainを含む５文字の英単語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "rain 5 a",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "paddingAll": "md"
@@ -1226,7 +1267,7 @@ function getWords(str, filterRgx){
 
 function getUserName(){
   const lastRow = data.getLastRow();  // 最終行取得
-  for(let i = 9; i <= lastRow; i++){
+  for(let i = 14; i <= lastRow; i++){
     const userId = data.getRange(i,1).getValue();
     const url = 'https://api.line.me/v2/bot/profile/' + userId;
     const userProfile = UrlFetchApp.fetch(url,{
@@ -1241,7 +1282,7 @@ function getUserName(){
 function tmp(){
   //console.log(getWords("(.)(.)\\1\\2.{4,6}", /[a-z]+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
-  console.log(xIsY("てかん", 1, "ひ"));
+  console.log(xIsY("てかん","ひ"));
 }
 
 function doPost(e){
