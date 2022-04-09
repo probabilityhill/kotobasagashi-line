@@ -307,12 +307,6 @@ const rule = {
             "paddingBottom": "sm"
           },
           {
-            "type": "text",
-            "text": "＊ハイフンは長音符（ー）でも可",
-            "align": "start",
-            "size": "xs"
-          },
-          {
             "type": "box",
             "layout": "vertical",
             "contents": [
@@ -407,6 +401,12 @@ const rule = {
             ],
             "paddingAll": "none",
             "paddingTop": "xs"
+          },
+          {
+            "type": "text",
+            "text": "＊ハイフン（-）は長音符（ー）でも可",
+            "align": "start",
+            "size": "xs"
           }
         ],
         "paddingAll": "md"
@@ -596,6 +596,28 @@ const rule = {
                     "contents": [
                       {
                         "type": "text",
+                        "text": "N = 数字,数字",
+                        "align": "start",
+                        "flex": 3,
+                        "size": "sm"
+                      },
+                      {
+                        "type": "text",
+                        "text": "（文字数の範囲を指定する）",
+                        "align": "end",
+                        "size": "xs",
+                        "weight": "bold",
+                        "color": "#B8B8B8",
+                        "flex": 5
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                      {
+                        "type": "text",
                         "text": "N = n",
                         "align": "start",
                         "size": "sm",
@@ -614,6 +636,12 @@ const rule = {
                   }
                 ],
                 "paddingAll": "sm"
+              },
+              {
+                "type": "text",
+                "text": "＊カンマ（,）は読点（、）でも可",
+                "align": "start",
+                "size": "xs"
               }
             ],
             "paddingAll": "none"
@@ -901,23 +929,6 @@ const btnList = {
         "layout": "horizontal",
         "contents": [
           {
-            "type": "button",
-            "action": {
-              "type": "postback",
-              "label": "X , Y , ... で構成される（M～N文字）",
-              "data": "consist-of-x-limited"
-            },
-            "color": "#FFFFFF"
-          }
-        ],
-        "borderColor": "#FFFFFF",
-        "borderWidth": "light"
-      },
-      {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
             "type": "box",
             "layout": "vertical",
             "contents": [
@@ -1086,7 +1097,7 @@ function advancedSearch(pbData, array){
   const filterRgx = getFilterRgx(array.slice(-1)[0]);  // 文字種フィルター
 
   for(var i = 0; i < array.length; i++){
-    array[i] = getHalfWidth(array[i]);  // 全角→半角
+    array[i] = getHalfWidth(array[i]).replace(/，|、/,",");  // 全角→半角、カンマへの置換
   }
   switch(pbData){
     case("include-x"):
@@ -1108,12 +1119,6 @@ function advancedSearch(pbData, array){
       else{
         strRgx = "["+X+"]{"+N+"}";
       }
-      break;
-    case("consist-of-x-limited"):
-      var X = array[0];
-      var M = array[1];
-      var N = array[2];
-      strRgx = "["+X+"]{"+M+","+N+"}";
       break;
     case("include-x-and-y"):
       var X = array[0];
