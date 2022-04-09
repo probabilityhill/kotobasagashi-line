@@ -958,6 +958,12 @@ function simpleSearch(str){
   str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
   str = getHalfWidth(str);  // 全角→半角
 
+  const xNum = str.indexOf("X")+1;  // 1つ目のXの位置
+  if(xNum > 0){
+    str = str.replace(/X/, "(.)");  // 1つ目のXは(.)に置換
+    str = str.replace(/X/g, "\\"+xNum);  // 2つ目以降のXはすべて\\?に置換
+  }
+
   if(/\-/.test(str)){
     let strArray = str.split("-");
     let head = strArray[0];
@@ -1123,16 +1129,11 @@ function getUserName(){
 }
 
 function tmp(){
-  //console.log(getWords(".{2,3}an", /[a-z]+/));
-  const user_id = "U0849df5519a0678e4a8d150c24d8e5b8";
-  const url = 'https://api.line.me/v2/bot/profile/' + user_id;
-  const userProfile = UrlFetchApp.fetch(url,{
-    'headers': {
-      'Authorization' :  'Bearer ' + ACCESS_TOKEN,
-    },
-  })
-  console.log(JSON.parse(userProfile).displayName);
+  //console.log(getWords("(.)..\\1", /[a-z]+/));
+  // X..X  X..X~
+  console.log(simpleSearch("X?XX~"));
 }
+
 function doPost(e){
   const events = JSON.parse(e.postData.contents).events;
   for (var i = 0; i < events.length; i++){
