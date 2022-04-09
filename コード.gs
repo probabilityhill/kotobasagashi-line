@@ -1183,7 +1183,7 @@ function getWords(str, filterRgx){
 
 function getUserName(){
   const lastRow = data.getLastRow();  // 最終行取得
-  for(let i = 1; i <= lastRow; i++){
+  for(let i = 6; i <= lastRow; i++){
     const userId = data.getRange(i,1).getValue();
     const url = 'https://api.line.me/v2/bot/profile/' + userId;
     const userProfile = UrlFetchApp.fetch(url,{
