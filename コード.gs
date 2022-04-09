@@ -223,6 +223,60 @@ const rule = {
             "contents": [
               {
                 "type": "text",
+                "text": "変数について",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "大文字のX, Y, Zは変数として使えるよ！X, Y, Zの順番に使ってね！",
+                "size": "sm",
+                "wrap": true
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "XYXY → いろいろ, さらさら など",
+                "size": "sm"
+              },
+              {
+                "type": "text",
+                "text": "?XY?XY → ちょうじょう, にゅうぎゅう など",
+                "size": "sm"
+              }
+            ],
+            "paddingAll": "sm"
+          }
+        ],
+        "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "color": "#375e97",
+        "margin": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
                 "text": "文字種フィルター",
                 "weight": "bold",
                 "color": "#375e97"
@@ -957,12 +1011,18 @@ function simpleSearch(str){
   str = str.replace(/~/g, ".*");  // 含む .*a.*
   str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
   str = getHalfWidth(str);  // 全角→半角
+  
+  replaceSameStr("X", 1);
+  replaceSameStr("Y", 2);
+  replaceSameStr("Z", 3);
 
-  const xNum = str.indexOf("X")+1;  // 1つ目のXの位置
-  if(xNum > 0){
-    str = str.replace(/X/, "(.)");  // 1つ目のXは(.)に置換
-    str = str.replace(/X/g, "\\"+xNum);  // 2つ目以降のXはすべて\\?に置換
+  function replaceSameStr(x, num){
+    str = str.replace(new RegExp(x), "(.)");  // 1つ目のxは(.)に置換
+    str = str.replace(new RegExp(x, "g"), "\\"+num);  // 2つ目以降のxはすべて\\idxに置換
   }
+  replaceSameStr("X");
+  replaceSameStr("Y");
+  replaceSameStr("Z");
 
   if(/\-/.test(str)){
     let strArray = str.split("-");
@@ -1129,9 +1189,9 @@ function getUserName(){
 }
 
 function tmp(){
-  //console.log(getWords("(.)..\\1", /[a-z]+/));
+  //console.log(getWords("(.)(.).\\2\\3", /[a-z]+/));
   // X..X  X..X~
-  console.log(simpleSearch("X?XX~"));
+  console.log(simpleSearch("ＸＹＸＹ"));
 }
 
 function doPost(e){
