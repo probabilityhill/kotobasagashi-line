@@ -1024,6 +1024,23 @@ const btnList = {
         ],
         "borderColor": "#FFFFFF",
         "borderWidth": "light"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "WORD ー[単語]→ 別の単語",
+              "data": "x-is-y"
+            },
+            "color": "#FFFFFF"
+          }
+        ],
+        "borderColor": "#FFFFFF",
+        "borderWidth": "light"
       }
     ],
     "paddingAll": "none",
@@ -1207,7 +1224,7 @@ function xIsY(bfStr, type){
 
         // 変換後の文字列が辞書にあれば配列に格納
         if(wordsArray.indexOf(afStr) > -1){
-          afStrList.push(bfStr+"-["+s+"]→"+afStr);
+          afStrList.push(bfStr+" ―["+s+"]→ "+afStr);
         }
       }
     }
@@ -1363,8 +1380,8 @@ function execute(event){
         input = "XY… N TYPE";
         break;
       case("x-is-y"):
-        text = "文字AをBに置換して単語になる";
-        input = "WORD TYPE";
+        text = "WORD -[単語]→ 単語";
+        input = "WORD TYPE(ひ/a)";
         break;
     }
     const messages = [
