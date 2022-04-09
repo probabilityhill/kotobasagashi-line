@@ -285,6 +285,12 @@ const rule = {
             "paddingBottom": "sm"
           },
           {
+            "type": "text",
+            "text": "＊ハイフンは長音符（ー）でも可",
+            "align": "start",
+            "size": "xs"
+          },
+          {
             "type": "box",
             "layout": "vertical",
             "contents": [
@@ -377,7 +383,8 @@ const rule = {
                 ]
               }
             ],
-            "paddingAll": "none"
+            "paddingAll": "none",
+            "paddingTop": "xs"
           }
         ],
         "paddingAll": "md"
@@ -1189,9 +1196,9 @@ function getUserName(){
 }
 
 function tmp(){
-  //console.log(getWords("(.)(.).\\2\\3", /[a-z]+/));
+  console.log(getWords("(.)(.)\\1\\2.{4,6}", /[a-z]+/));
   // X..X  X..X~
-  console.log(simpleSearch("ＸＹＸＹ"));
+  //console.log(simpleSearch("ＸＹＸＹ"));
 }
 
 function doPost(e){
