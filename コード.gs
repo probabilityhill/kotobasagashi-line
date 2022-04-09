@@ -1006,12 +1006,6 @@ const quickReply = {
   ]
 };
 
-// テスト
-function myFunction() {
-  // h-
-  console.log(getWords("~じゅ~"));
-}
-
 function simpleSearch(str){
   str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／/g, "/").replace(/ー|‐/g, "-")  // 記号の置換
   str = str.replace(/\?|？|．|。/g, ".");  // １文字
@@ -1183,7 +1177,7 @@ function getWords(str, filterRgx){
 
 function getUserName(){
   const lastRow = data.getLastRow();  // 最終行取得
-  for(let i = 6; i <= lastRow; i++){
+  for(let i = 9; i <= lastRow; i++){
     const userId = data.getRange(i,1).getValue();
     const url = 'https://api.line.me/v2/bot/profile/' + userId;
     const userProfile = UrlFetchApp.fetch(url,{
@@ -1197,7 +1191,6 @@ function getUserName(){
 
 function tmp(){
   console.log(getWords("(.)(.)\\1\\2.{4,6}", /[a-z]+/));
-  // X..X  X..X~
   //console.log(simpleSearch("ＸＹＸＹ"));
 }
 
