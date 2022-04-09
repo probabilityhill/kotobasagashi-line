@@ -1169,7 +1169,7 @@ function getWords(str, filterRgx){
     return "みつからなかった😣"
   }
   const resultText = "「"+resultArray.join(", ")+"」がみつかったよ😊";
-  if(resultText.length > 2000){
+  if(resultText.length > 5000){
     return "いっぱいあってさがしきれないよ😵";
   }
   return resultText;
