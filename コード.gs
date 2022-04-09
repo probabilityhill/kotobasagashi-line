@@ -1018,8 +1018,8 @@ function simpleSearch(str){
   replaceSameStr("Z", 3);
 
   function replaceSameStr(x, num){
-    str = str.replace(new RegExp(x), "(.)");  // 1つ目のxは(.)に置換
-    str = str.replace(new RegExp(x, "g"), "\\"+num);  // 2つ目以降のxはすべて\\idxに置換
+    str = str.replace(eval("/"+x+"/"), "(.)");  // 1つ目のxは(.)に置換
+    str = str.replace(eval("/"+x+"/g"), "\\"+num);  // 2つ目以降のxはすべて\\idxに置換
   }
   replaceSameStr("X");
   replaceSameStr("Y");
