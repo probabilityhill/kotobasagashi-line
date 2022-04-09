@@ -1127,9 +1127,58 @@ function advancedSearch(pbData, array){
         strRgx = "[^"+X+"]{"+N+"}";
       }
       break;
+    case("x-is-y"):
+      var X = array[0];
+      return xIsY(X, array.slice(-1)[0]);
+      break;
   }
   
   return getWords(strRgx, filterRgx);
+}
+
+function xIsY(bfStr, type){
+  const hiraList = ["うがい", "えがお", "かがく", "かがみ", "かがむ", "かがわ", "きがえ", "ぎがん", "くがつ", "こがす", "ごがつ", "さがす", "さがる", "しがい", "しがつ", "すがお", "すがた", "すがむ", "せがれ", "せがん", "たがい", "たがめ", "ちがい", "ちがう", "つがい", "てがき", "てがた", "てがみ", "とがる", "ながい", "ながさ", "ながす", "ながの", "にがい", "にがす", "にがて", "にがり", "ねがい", "ねがう", "のがす", "はがき", "はがす", "はがね", "ひがい", "ひがさ", "ひがし", "ふがし", "まがお", "まがる", "みがく", "めがね", "めがみ", "もがく", "ゆがく"];
+  const alphaList = ["dish", "disk", "fish", "kiss", "list", "miss", "mist", "rise", "risk", "wise", "wish"];
+
+  function getConvertedStr(type){
+    const convList = function(){
+      if(type === "ひ"){
+        return hiraList;
+      }
+      else{
+        return alphaList;
+      }
+    };
+
+    let afStr = "";
+    let afStrList = [];
+    for(let i = 0; i < convList().length; i++){
+      let s = convList()[i];  // 変換用単語
+
+      // sの1文字目がbfStrにあればsの3文字目に変換
+      if(bfStr.indexOf(s.charAt(0)) > -1){
+        afStr = bfStr.replace(eval("/"+s.charAt(0)+"/g"), s.charAt(s.length - 1));
+
+        // 変換後の文字列が辞書にあれば配列に格納
+        if(wordsArray.indexOf(afStr) > -1){
+          afStrList.push(bfStr+"-["+s+"]→"+afStr);
+        }
+      }
+    }
+
+    if(afStrList.length === 0){
+      return "みつからなかった😣"
+    }
+    else{
+      const resultText = afStrList.join("\n")+"\nがみつかったよ😊";
+      if(resultText.length > 5000){
+        return "いっぱいあってさがしきれないよ😵";
+      }
+      return resultText;
+    }
+  }
+
+  return getConvertedStr(type);
 }
 
 function getHalfWidth(str){
@@ -1190,8 +1239,9 @@ function getUserName(){
 }
 
 function tmp(){
-  console.log(getWords("(.)(.)\\1\\2.{4,6}", /[a-z]+/));
+  //console.log(getWords("(.)(.)\\1\\2.{4,6}", /[a-z]+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
+  console.log(xIsY("てかん", 1, "ひ"));
 }
 
 function doPost(e){
@@ -1205,12 +1255,10 @@ function execute(event){
   const eventType = event.type;
   const replyToken = event.replyToken;
   const userId = event.source.userId;
-  const displayName = event.source.displayName;
 
   if(eventType === "follow"){
     const writeRow = data.getLastRow()+1;  // 書く行取得
     data.getRange(writeRow,1).setValue(userId);  // A列目にユーザID記入
-    //data.getRange(writeRow,3).setValue(displayName);  // C列目に表示名記入
     data.getDataRange().removeDuplicates([1]);  // ユーザIDの重複を削除
 
     const messages = [
@@ -1267,6 +1315,10 @@ function execute(event){
       case("consist-of-not-x"):
         text = "XY…以外で構成される";
         input = "XY… N TYPE";
+        break;
+      case("x-is-y"):
+        text = "文字AをBに置換して単語になる";
+        input = "WORD TYPE";
         break;
     }
     const messages = [
