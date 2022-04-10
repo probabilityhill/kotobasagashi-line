@@ -1580,15 +1580,19 @@ function getWords(str, filterRgx){
 
 function getUserName(){
   const lastRow = data.getLastRow();  // 最終行取得
-  for(let i = 14; i <= lastRow; i++){
-    const userId = data.getRange(i,1).getValue();
-    const url = 'https://api.line.me/v2/bot/profile/' + userId;
-    const userProfile = UrlFetchApp.fetch(url,{
-      'headers': {
-        'Authorization' :  'Bearer ' + ACCESS_TOKEN,
-      },
-    })
-    data.getRange(i,3).setValue(JSON.parse(userProfile).displayName);    
+  for(let i = 1; i <= lastRow; i++){
+    if(data.getRange(i,3).isBlank()){
+      const userId = data.getRange(i,1).getValue();
+      const url = 'https://api.line.me/v2/bot/profile/' + userId;
+      const userProfile = UrlFetchApp.fetch(url,{
+        'headers': {
+          'Authorization' :  'Bearer ' + ACCESS_TOKEN,
+        },
+      });      
+      data.getRange(i,3).setValue(JSON.parse(userProfile).displayName);
+      data.getRange(i,4).setValue(JSON.parse(userProfile).statusMessage);
+      data.getRange(i,5).setValue(JSON.parse(userProfile).pictureUrl);
+    }
   }
 }
 
