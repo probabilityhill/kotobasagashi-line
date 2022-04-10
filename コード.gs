@@ -127,7 +127,7 @@ const rule = {
             "contents": [
               {
                 "type": "text",
-                "text": "記号について",
+                "text": "記号",
                 "weight": "bold",
                 "color": "#375e97"
               }
@@ -223,7 +223,7 @@ const rule = {
             "contents": [
               {
                 "type": "text",
-                "text": "変数について",
+                "text": "変数（大文字）",
                 "weight": "bold",
                 "color": "#375e97"
               }
@@ -236,9 +236,22 @@ const rule = {
             "contents": [
               {
                 "type": "text",
-                "text": "大文字のX, Y, Zは変数として使えるよ！X, Y, Zの順番に使ってね！",
-                "size": "sm",
-                "wrap": true
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "・",
+                    "size": "sm",
+                    "color": "#6B84A9",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "span",
+                    "text": "X, Y, Z（同じ文字を表す）",
+                    "size": "sm",
+                    "weight": "bold",
+                    "color": "#6B84A9"
+                  }
+                ]
               }
             ]
           },
@@ -252,29 +265,253 @@ const rule = {
                 "contents": [
                   {
                     "type": "span",
-                    "text": "XYXY",
+                    "text": "XYYX",
                     "weight": "bold",
-                    "color": "#6182B5"
+                    "color": "#6C757D"
                   },
                   {
                     "type": "span",
-                    "text": " → いろいろ, さらさら"
+                    "text": " → きつつき"
                   }
                 ]
-              },
+              }
+            ],
+            "paddingAll": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "・",
+                    "size": "sm",
+                    "color": "#6B84A9",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "span",
+                    "text": "IRO（色名）",
+                    "size": "sm",
+                    "weight": "bold",
+                    "color": "#6B84A9"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
               {
                 "type": "text",
                 "size": "sm",
                 "contents": [
                   {
                     "type": "span",
-                    "text": "?XY?XY",
+                    "text": "IROIRO",
                     "weight": "bold",
-                    "color": "#6182B5"
+                    "color": "#6C757D"
                   },
                   {
                     "type": "span",
-                    "text": " → ちょうじょう, にゅうぎゅう"
+                    "text": " → あいこん, はいきん"
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "・",
+                    "size": "sm",
+                    "color": "#6B84A9",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "span",
+                    "text": "ETO（干支）",
+                    "size": "sm",
+                    "weight": "bold",
+                    "color": "#6B84A9"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "IROIRO",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → あいこん, はいきん"
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "・",
+                    "size": "sm",
+                    "color": "#6B84A9",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "span",
+                    "text": "HOGAKU（方角）",
+                    "size": "sm",
+                    "weight": "bold",
+                    "color": "#6B84A9"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "漢字ー？HOGAKU",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → 指南, 敗北"
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "・",
+                    "size": "sm",
+                    "color": "#6B84A9",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "span",
+                    "text": "SHIKI（四季）",
+                    "size": "sm",
+                    "weight": "bold",
+                    "color": "#6B84A9"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "漢字ーSHIKI？",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → 秋桜, 春雨"
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "・",
+                    "size": "sm",
+                    "color": "#6B84A9",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "span",
+                    "text": "SUJI（数字）",
+                    "size": "sm",
+                    "weight": "bold",
+                    "color": "#6B84A9"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "a-?SUJI",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → bone, height"
                   }
                 ]
               }
@@ -445,7 +682,7 @@ const rule = {
                     "type": "span",
                     "text": "～うめ～",
                     "weight": "bold",
-                    "color": "#6182B5"
+                    "color": "#6C757D"
                   },
                   {
                     "type": "span",
@@ -461,7 +698,7 @@ const rule = {
                     "type": "span",
                     "text": "漢字ーX？X？",
                     "weight": "bold",
-                    "color": "#6182B5"
+                    "color": "#6C757D"
                   },
                   {
                     "type": "span",
@@ -477,7 +714,7 @@ const rule = {
                     "type": "span",
                     "text": "a-?(a/o)?e",
                     "weight": "bold",
-                    "color": "#6182B5"
+                    "color": "#6C757D"
                   },
                   {
                     "type": "span",
@@ -818,11 +1055,11 @@ const rule = {
                 "contents": [
                   {
                     "type": "span",
-                    "text": "赤を含む三字熟語："
+                    "text": "色を含む三字熟語："
                   },
                   {
                     "type": "span",
-                    "text": "赤 ３ 漢字",
+                    "text": "IRO ３ 漢字",
                     "weight": "bold",
                     "color": "#6182B5"
                   }
@@ -1269,11 +1506,11 @@ function getFilterRgx(type){
 
 function getWords(str, filterRgx){
 
-  str = str.replace(/IRO/g, "(紫|青|藍|紺|水|緑|黄|金|橙|朱|赤|茶|紅|桃|銀|灰|鼠|黒|白|虹)");
-  str = str.replace(/ETO/g, "(子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥)");
-  str = str.replace(/HOGAKU/g, "(東|西|南|北|east|west|south|north|ひがし|にし|みなみ|きた)");
-  str = str.replace(/SHIKI/g, "(春|夏|秋|冬)");
-  str = str.replace(/SUJI/g, "(零|一|二|三|四|五|六|七|八|九|十|百|千|万|億|兆|京)");
+  str = str.replace(/IRO/g, "(紫|青|藍|紺|水|緑|黄|金|橙|朱|赤|茶|紅|桃|銀|灰|鼠|黒|白|虹|むらさき|あお|あい|こん|みず|みどり|き|きん|だいだい|しゅ|あか|ちゃ|べに|もも|ぎん|はい|ねずみ|くろ|しろ|にじ|purple|violet|blue|indigo|navy|water|green|yellow|gold|orange|red|brown|pink|silver|gray|grey|black|white|rainbow|cyan|magenta)");
+  str = str.replace(/ETO/g, "(子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥|ね|うし|とら|う|たつ|み|うま|ひつじ|さる|とり|いぬ|い|rat|ox|tiger|rabbit|hare|dragon|snake|horse|sheep|monkey|rooster|dog|boar)");
+  str = str.replace(/HOGAKU/g, "(東|西|南|北|east|west|south|north|ひがし|にし|みなみ|きた|とう|ざい|なん|ぼく)");
+  str = str.replace(/SHIKI/g, "(春|夏|秋|冬|はる|なつ|あき|ふゆ|しゅん|か|しゅう|とう|spring|summer|autumn|fall|winter)");
+  str = str.replace(/SUJI/g, "(零|一|二|三|四|五|六|七|八|九|十|百|千|万|億|兆|京|zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|hundred|thousand|million|billion|ぜろ|れい|いち|に|さん|し|ご|ろく|なな|はち|きゅう|じゅう|ひゃく|せん|まん|おく|ちょう|けい)");
 
   console.log(str);  // CHECK
 
