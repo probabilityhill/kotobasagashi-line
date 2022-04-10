@@ -1082,6 +1082,8 @@ function simpleSearch(str){
   str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
   str = getHalfWidth(str);  // 全角→半角
   
+  str = str.replace(/IRO/g, "(紫|青|水|緑|黄|金|橙|赤|桃|銀|灰)");
+
   replaceSameStr("X", 1);
   replaceSameStr("Y", 2);
   replaceSameStr("Z", 3);
@@ -1111,11 +1113,14 @@ function simpleSearch(str){
 
 function advancedSearch(pbData, array){
   let strRgx = null;
-  const filterRgx = getFilterRgx(array.slice(-1)[0]);  // 文字種フィルター
+
 
   for(var i = 0; i < array.length; i++){
     array[i] = getHalfWidth(array[i]).replace(/，|、/,",");  // 全角→半角、カンマへの置換
   }
+
+  const filterRgx = getFilterRgx(array.slice(-1)[0]);  // 文字種フィルター
+
   switch(pbData){
     case("include-x"):
       var X = array[0];
