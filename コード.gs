@@ -1082,8 +1082,6 @@ function simpleSearch(str){
   str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
   str = getHalfWidth(str);  // 全角→半角
   
-  str = str.replace(/IRO/g, "(紫|青|水|緑|黄|金|橙|赤|桃|銀|灰)");
-
   replaceSameStr("X", 1);
   replaceSameStr("Y", 2);
   replaceSameStr("Z", 3);
@@ -1092,10 +1090,6 @@ function simpleSearch(str){
     str = str.replace(eval("/"+x+"/"), "(.)");  // 1つ目のxは(.)に置換
     str = str.replace(eval("/"+x+"/g"), "\\"+num);  // 2つ目以降のxはすべて\\idxに置換
   }
-  replaceSameStr("X");
-  replaceSameStr("Y");
-  replaceSameStr("Z");
-
   if(/\-/.test(str)){
     let strArray = str.split("-");
     let head = strArray[0];
@@ -1275,6 +1269,9 @@ function getFilterRgx(type){
 
 function getWords(str, filterRgx){
 
+  str = str.replace(/IRO/g, "(紫|青|藍|紺|水|緑|黄|金|橙|朱|赤|茶|紅|桃|銀|灰|鼠|黒|白|虹)");
+  str = str.replace(/ETO/g, "(子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥)");
+
   console.log(str);  // CHECK
 
   str = "/^" + str + "$/";
@@ -1309,6 +1306,7 @@ function getUserName(){
 function tmp(){
   //console.log(getWords("(.)(.)\\1\\2.{4,6}", /[a-z]+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
+  console.log(simpleSearch(""));
   console.log(xIsY("てかん","ひ"));
 }
 
