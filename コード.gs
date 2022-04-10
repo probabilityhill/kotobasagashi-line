@@ -246,7 +246,7 @@ const rule = {
                   },
                   {
                     "type": "span",
-                    "text": "X, Y, Z（同じ文字を表す）",
+                    "text": "X, Y, Z（Xから優先して使ってね！）",
                     "size": "sm",
                     "weight": "bold",
                     "color": "#6B84A9"
@@ -1541,7 +1541,7 @@ function getFilterRgx(type){
     return /^[\u3040-\u309F]+$/;
   }
   else if(type === "a"){
-    return /[a-z]+/;
+    return /^[a-z]+$/;
   }
   else if(type === "漢字"){
     return /^[\u3005-\u3006\u4E00-\u9FFF]+$/;
@@ -1601,6 +1601,12 @@ function tmp(){
   //console.log(simpleSearch("ＸＹＸＹ"));
   console.log(simpleSearch(""));
   console.log(xIsY("てかん","ひ"));
+}
+
+function countWords(){
+  let countArray = wordsArray.filter(RegExp.prototype.test,eval(/^[a-z]+$/));
+  console.log(wordsArray.length);
+  // 	ひらがなのみ：77504, 熟語：47183, ひらがなと漢字混合：5739, 英単語：121946
 }
 
 function doPost(e){
