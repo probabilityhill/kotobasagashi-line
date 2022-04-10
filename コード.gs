@@ -361,13 +361,13 @@ const rule = {
                 "contents": [
                   {
                     "type": "span",
-                    "text": "IROIRO",
+                    "text": "漢字ーETO？",
                     "weight": "bold",
                     "color": "#6C757D"
                   },
                   {
                     "type": "span",
-                    "text": " → あいこん, はいきん"
+                    "text": " → 子供, 未来"
                   }
                 ]
               }
