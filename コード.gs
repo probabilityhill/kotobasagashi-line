@@ -1356,6 +1356,14 @@ const quickReply = {
         "label": "ボタン",
         "text": "ボタン"
       }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "uri",
+        "label": "バグ報告/リクエスト",
+        "uri": "https://forms.gle/wFnKemiWR55AngWK9"
+      }
     }
   ]
 };
