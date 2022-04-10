@@ -1050,7 +1050,7 @@ const rule = {
                   },
                   {
                     "type": "span",
-                    "text": "入力例（ボタン押下後）",
+                    "text": "入力例（ボタン押下＋入力）",
                     "size": "sm",
                     "weight": "bold",
                     "color": "#6B84A9"
