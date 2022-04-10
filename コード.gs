@@ -1271,6 +1271,9 @@ function getWords(str, filterRgx){
 
   str = str.replace(/IRO/g, "(紫|青|藍|紺|水|緑|黄|金|橙|朱|赤|茶|紅|桃|銀|灰|鼠|黒|白|虹)");
   str = str.replace(/ETO/g, "(子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥)");
+  str = str.replace(/HOGAKU/g, "(東|西|南|北|east|west|south|north|ひがし|にし|みなみ|きた)");
+  str = str.replace(/SHIKI/g, "(春|夏|秋|冬)");
+  str = str.replace(/SUJI/g, "(零|一|二|三|四|五|六|七|八|九|十|百|千|万|億|兆|京)");
 
   console.log(str);  // CHECK
 
