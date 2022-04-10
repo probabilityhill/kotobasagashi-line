@@ -1096,6 +1096,22 @@ const rule = {
                     "color": "#6182B5"
                   }
                 ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "はんこ ―[単語]→ 別の単語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "はんこ ひ",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
               }
             ]
           }
