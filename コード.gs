@@ -721,6 +721,22 @@ const rule = {
                     "text": " → bone, lake"
                   }
                 ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "ひ漢字ー～猿～",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → 犬猿の仲, 猿も木から落ちる"
+                  }
+                ]
               }
             ],
             "paddingAll": "none",
@@ -1108,6 +1124,22 @@ const rule = {
                   {
                     "type": "span",
                     "text": "はんこ ひ",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "seal ―[単語]→ 別の単語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "seal a",
                     "weight": "bold",
                     "color": "#6182B5"
                   }
