@@ -1322,7 +1322,7 @@ const rule = {
                 "color": "#375e97"
               }
             ],
-            "paddingBottom": "sm"
+            "paddingBottom": "none"
           },
           {
             "type": "box",
@@ -1332,10 +1332,10 @@ const rule = {
                 "type": "text",
                 "text": "ひらがな",
                 "weight": "bold",
-                "color": "#6C757D"
+                "color": "#849EBF"
               }
             ],
-            "paddingBottom": "sm"
+            "paddingTop": "xs"
           },
           {
             "type": "box",
@@ -1343,91 +1343,315 @@ const rule = {
             "contents": [
               {
                 "type": "text",
-                "text": "「うめ」を含む",
-                "size": "sm"
-              },
-              {
-                "type": "text",
                 "size": "sm",
                 "contents": [
                   {
                     "type": "span",
-                    "text": "～うめ～",
-                    "weight": "bold",
-                    "color": "#6182B5"
+                    "text": "「そ」で始まり「ん」で終わる："
                   },
                   {
                     "type": "span",
-                    "text": " → そうめん, とうめい"
+                    "text": "そ～ん",
+                    "weight": "bold",
+                    "color": "#6182B5"
                   }
                 ]
               },
               {
                 "type": "text",
-                "text": "「うめ」を含む",
-                "size": "sm"
-              },
+                "text": "→ そうめん, そせん",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
               {
                 "type": "text",
                 "size": "sm",
                 "contents": [
+                  {
+                    "type": "span",
+                    "text": "「がみ」で終わる4文字："
+                  },
+                  {
+                    "type": "span",
+                    "text": "？？がみ",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ ぎんがみ, たてがみ",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "2文字目とそれ以降に「い」を含む："
+                  },
+                  {
+                    "type": "span",
+                    "text": "？い～い～",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ たいかのかいしん, はいらいと",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "4文字の回文："
+                  },
+                  {
+                    "type": "span",
+                    "text": "XYYX",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ きつつき",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "色名が２連続："
+                  },
+                  {
+                    "type": "span",
+                    "text": "IROIRO",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ あいこん, はいきん",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "熟語",
+                "weight": "bold",
+                "color": "#849EBF"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "「桜」を含む："
+                  },
+                  {
+                    "type": "span",
+                    "text": "漢字ー～桜～",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ 桜前線, 夜桜",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "四季＋1文字："
+                  },
+                  {
+                    "type": "span",
+                    "text": "漢字ーSHIKI？",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ 秋桜, 春雨",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "1, 3文字目が同じ四字熟語："
+                  },
                   {
                     "type": "span",
                     "text": "漢字ーX？X？",
                     "weight": "bold",
                     "color": "#6182B5"
-                  },
-                  {
-                    "type": "span",
-                    "text": " → 一世一代, 不老不死"
                   }
                 ]
               },
               {
                 "type": "text",
-                "text": "「うめ」を含む",
-                "size": "sm"
-              },
+                "text": "→ 一世一代, 不老不死",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "英単語",
+                "weight": "bold",
+                "color": "#849EBF"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
               {
                 "type": "text",
                 "size": "sm",
                 "contents": [
+                  {
+                    "type": "span",
+                    "text": "2文字目がo："
+                  },
+                  {
+                    "type": "span",
+                    "text": "a-?o?",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ god, top",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "2文字目がaかoで4文字目がe："
+                  },
                   {
                     "type": "span",
                     "text": "a-?(a/o)?e",
                     "weight": "bold",
                     "color": "#6182B5"
-                  },
-                  {
-                    "type": "span",
-                    "text": " → bone, lake"
                   }
                 ]
               },
               {
                 "type": "text",
-                "text": "「うめ」を含む",
-                "size": "sm"
-              },
-              {
-                "type": "text",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "ひ漢字ー～猿～",
-                    "weight": "bold",
-                    "color": "#6182B5"
-                  },
-                  {
-                    "type": "span",
-                    "text": " → 犬猿の仲, 猿も木から落ちる"
-                  }
-                ]
+                "text": "→ bone, cake",
+                "size": "xs",
+                "color": "#6C757D"
               }
             ],
-            "paddingAll": "none",
-            "paddingStart": "xs"
+            "paddingTop": "xs"
           }
         ],
         "paddingAll": "md"
