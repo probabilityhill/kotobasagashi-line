@@ -8,6 +8,37 @@ const wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split(",");
 const sheetId = "1Uo9_SrTYmpS8e8CqXTkFzO4h90BGVlWW1IOaVPtKn9o";
 const data = SpreadsheetApp.openById(sheetId).getSheets()[0];  // シートを取得
 
+
+function keepDelWords(array){
+  const trashId = "1Gdn4m4s0Aq9vf0PTNJ-4sqOZRqIuB96SSr9tEfp7478";
+  const data = SpreadsheetApp.openById(trashId).getSheets()[0];  // ゴミ箱シートを取得
+  const lastRow = data.getLastRow();
+  for(let i = 0; i < array.length; i++){
+    data.getRange(lastRow+1+i,1).setValue(array[i]);
+  }
+}
+
+function makeSpreadSheet(array){
+  // 二次元配列をカンマ区切りの文字列に変換
+  var csv = array.join('\n');
+
+  // Blobオブジェクトの作成
+  var blob = Utilities.newBlob(csv, MimeType.CSV, 'word.csv');
+  
+  // CSVファイルの保存先フォルダを指定
+  var id = '1s35bmgREfICvHK-8Eezgx51g7ZV8Ojfb'; //フォルダID
+  var folder = DriveApp.getFolderById(id);
+
+  // CSVファイルを作成
+  folder.createFile(blob);
+/*
+  const ssId = "1AkYQV-i_gIYWBaXP2DyxRSG-7IYz2I3ZFfA6kPIDX10"
+  const ssFile = SpreadsheetApp.openById(ssId).getSheets()[0];
+  for(let i = 1; i < wordsArray.length; i++){
+    ssFile.getRange(1, i).setValue(wordsArray[i-1]);
+  }*/
+}
+
 const rule = {
   "type": "bubble",
   "size": "giga",
@@ -1369,10 +1400,9 @@ const quickReply = {
 };
 
 function simpleSearch(str){
-  str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／/g, "/").replace(/ー|‐/g, "-")  // 記号の置換
+  str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／|\//g, "|").replace(/ー|‐/g, "-")  // 記号の置換
   str = str.replace(/\?|？|．|。/g, ".");  // １文字
   str = str.replace(/~/g, ".*");  // 含む .*a.*
-  str = str.replace(/\(\?\=(.+\/.+)\)/g, "($1)")  // または (a|b)
   str = getHalfWidth(str);  // 全角→半角
   
   replaceSameStr("X", 1);
@@ -1568,6 +1598,7 @@ function getWords(str, filterRgx){
   str = str.replace(/HOGAKU/g, "(東|西|南|北|east|west|south|north|ひがし|にし|みなみ|きた|とう|ざい|なん|ぼく)");
   str = str.replace(/SHIKI/g, "(春|夏|秋|冬|はる|なつ|あき|ふゆ|しゅん|か|しゅう|とう|spring|summer|autumn|fall|winter)");
   str = str.replace(/SUJI/g, "(零|一|二|三|四|五|六|七|八|九|十|百|千|万|億|兆|京|zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|hundred|thousand|million|billion|ぜろ|れい|いち|に|さん|し|ご|ろく|なな|はち|きゅう|じゅう|ひゃく|せん|まん|おく|ちょう|けい)");
+  str = str.replace(/YOBI/g, "(月|火|水|木|金|土|日|げつ|か|すい|もく|きん|ど|にち|mon|tue|wed|thu|fri|sat|sun)");
 
   console.log(str);  // CHECK
 
@@ -1607,7 +1638,7 @@ function getUserName(){
 function tmp(){
   //console.log(getWords("(.)(.)\\1\\2.{4,6}", /[a-z]+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
-  console.log(simpleSearch(""));
+  console.log(simpleSearch("～（たいか・しんか）～"));
   console.log(xIsY("てかん","ひ"));
 }
 
