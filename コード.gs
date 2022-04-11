@@ -39,7 +39,7 @@ function makeSpreadSheet(array){
   }*/
 }
 
-const rule = {
+const detail = {
   "type": "bubble",
   "size": "giga",
   "header": {
@@ -70,6 +70,214 @@ const rule = {
             "layout": "vertical",
             "contents": [
               {
+                "type": "text",
+                "text": "使用例（基本的な検索）",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "～うめ～",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → そうめん, とうめい"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "漢字ーX？X？",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → 一世一代, 不老不死"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "a-?(a/o)?e",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → bone, lake"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "ひ漢字ー～猿～",
+                    "weight": "bold",
+                    "color": "#6C757D"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → 犬猿の仲, 猿も木から落ちる"
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "none",
+            "paddingStart": "xs"
+          }
+        ],
+        "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "color": "#375e97",
+        "margin": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "使用例（高度な検索）",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "色を含む三字熟語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "IRO ３ 漢字",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "かとみを含む４文字の単語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "か み ４ ひ",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "rainを含む５文字の英単語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "rain 5 a",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "はんこ ―[単語]→ 別の単語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "はんこ ひ",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "seal ―[単語]→ 別の単語："
+                  },
+                  {
+                    "type": "span",
+                    "text": "seal a",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "color": "#375e97",
+        "margin": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
                 "type": "box",
                 "layout": "baseline",
                 "contents": [
@@ -81,7 +289,7 @@ const rule = {
                   },
                   {
                     "type": "text",
-                    "text": "アルファベット、数字、記号は半角と全角どちらにも対応しているよ！",
+                    "text": "全角英数字記号 対応",
                     "flex": 15,
                     "wrap": true,
                     "size": "sm"
@@ -106,7 +314,7 @@ const rule = {
                   },
                   {
                     "type": "text",
-                    "text": "アルファベットは小文字で入力してね！",
+                    "text": "アルファベットは小文字に統一",
                     "flex": 15,
                     "wrap": true,
                     "size": "sm"
@@ -131,7 +339,7 @@ const rule = {
                   },
                   {
                     "type": "text",
-                    "text": "カタカナはひらがなに統一されているよ！",
+                    "text": "カタカナはひらがなに統一",
                     "flex": 15,
                     "wrap": true,
                     "size": "sm"
@@ -694,103 +902,6 @@ const rule = {
             "contents": [
               {
                 "type": "text",
-                "text": "入力例",
-                "weight": "bold",
-                "color": "#375e97"
-              }
-            ],
-            "paddingBottom": "sm"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "～うめ～",
-                    "weight": "bold",
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "span",
-                    "text": " → そうめん, とうめい"
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "漢字ーX？X？",
-                    "weight": "bold",
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "span",
-                    "text": " → 一世一代, 不老不死"
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "a-?(a/o)?e",
-                    "weight": "bold",
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "span",
-                    "text": " → bone, lake"
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "size": "sm",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "ひ漢字ー～猿～",
-                    "weight": "bold",
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "span",
-                    "text": " → 犬猿の仲, 猿も木から落ちる"
-                  }
-                ]
-              }
-            ],
-            "paddingAll": "none",
-            "paddingStart": "xs"
-          }
-        ],
-        "paddingAll": "md"
-      },
-      {
-        "type": "separator",
-        "color": "#375e97",
-        "margin": "none"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
                 "text": "高度な検索",
                 "weight": "bold",
                 "color": "#375e97"
@@ -1064,6 +1175,154 @@ const rule = {
               }
             ],
             "paddingAll": "none"
+          }
+        ],
+        "paddingAll": "md"
+      }
+    ],
+    "paddingAll": "none"
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#375e97"
+    }
+  }
+};
+
+const rule = {
+  "type": "bubble",
+  "size": "giga",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "ルール",
+        "align": "center",
+        "size": "lg",
+        "weight": "bold",
+        "color": "#FFFFFF"
+      }
+    ],
+    "paddingAll": "sm"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "記号",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "１文字 →  ? . 。",
+                    "align": "start",
+                    "flex": 3,
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "（はてな・ピリオド・句点）",
+                    "align": "end",
+                    "size": "xs",
+                    "weight": "bold",
+                    "color": "#B8B8B8",
+                    "flex": 5
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ｎ文字 → ~",
+                    "align": "start",
+                    "size": "sm",
+                    "flex": 3
+                  },
+                  {
+                    "type": "text",
+                    "text": "（チルダ・波ダッシュ）",
+                    "align": "end",
+                    "size": "xs",
+                    "weight": "bold",
+                    "color": "#B8B8B8",
+                    "flex": 5
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "または → (x/y) (x・y)",
+                    "align": "start",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "（スラッシュ・中黒）",
+                    "align": "end",
+                    "size": "xs",
+                    "weight": "bold",
+                    "color": "#B8B8B8"
+                  }
+                ]
+              }
+            ],
+            "paddingAll": "none"
+          }
+        ],
+        "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "color": "#375e97",
+        "margin": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "基本的な検索（そのまま入力）",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
           },
           {
             "type": "box",
@@ -1071,26 +1330,129 @@ const rule = {
             "contents": [
               {
                 "type": "text",
+                "text": "ひらがな",
+                "weight": "bold",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingBottom": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "「うめ」を含む",
+                "size": "sm"
+              },
+              {
+                "type": "text",
+                "size": "sm",
                 "contents": [
                   {
                     "type": "span",
-                    "text": "・",
-                    "size": "sm",
-                    "color": "#6B84A9",
-                    "weight": "bold"
+                    "text": "～うめ～",
+                    "weight": "bold",
+                    "color": "#6182B5"
                   },
                   {
                     "type": "span",
-                    "text": "入力例（ボタン押下＋入力）",
-                    "size": "sm",
+                    "text": " → そうめん, とうめい"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "「うめ」を含む",
+                "size": "sm"
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "漢字ーX？X？",
                     "weight": "bold",
-                    "color": "#6B84A9"
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → 一世一代, 不老不死"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "「うめ」を含む",
+                "size": "sm"
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "a-?(a/o)?e",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → bone, lake"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "「うめ」を含む",
+                "size": "sm"
+              },
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "ひ漢字ー～猿～",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": " → 犬猿の仲, 猿も木から落ちる"
                   }
                 ]
               }
             ],
-            "paddingBottom": "sm",
-            "paddingTop": "sm"
+            "paddingAll": "none",
+            "paddingStart": "xs"
+          }
+        ],
+        "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "color": "#375e97",
+        "margin": "none"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "高度な検索（ボタン押下＋入力）",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
           },
           {
             "type": "box",
