@@ -1064,6 +1064,52 @@ const ruleUnique = {
             "contents": [
               {
                 "type": "text",
+                "text": "xを構成に含む漢字",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "<x>",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：xを構成に含む漢字1文字を表す"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "color": "#375e97"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
                 "text": "基本的な検索の例",
                 "weight": "bold",
                 "color": "#375e97"
