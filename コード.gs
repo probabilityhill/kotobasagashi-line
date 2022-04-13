@@ -108,8 +108,8 @@ function simpleSearch(str){
     str = str.replace(eval("/"+x+"/"), "(.)");  // 1つ目のxは(.)に置換
     str = str.replace(eval("/"+x+"/g"), "\\"+num);  // 2つ目以降のxはすべて\\idxに置換
   }
-  if(/(漢字|ひ漢字|a)(\-|ー|‐|−|‑|–|—|―|ｰ)/.test(str)){
-    str = str.replace(/ー|‐|−|‑|–|—|―|ｰ/g, "-");
+  if(/(漢字|ひ漢字|a)(\-|ー|‐|−|‑|–|—|―|ｰ|－)/.test(str)){
+    str = str.replace(/ー|‐|−|‑|–|—|―|ｰ|－/g, "-");
     let strArray = str.split("-");
     let head = strArray[0];
     str = strArray[1];
@@ -338,7 +338,7 @@ function getUserName(){
 function tmp(){
   //console.log(getWords("<月>..", /.+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
-  console.log(simpleSearch("漢字-？月"));
+  console.log(simpleSearch("？ー？ー"));
   //console.log(xIsY("てかん","ひ"));
 }
 
@@ -531,6 +531,10 @@ function execute(event){
       }
       sendReplyMessage(replyToken, messages); 
     }
+  }
+  else if(eventType === "unfollow"){
+    const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
+    data.getRange(userIdRow,6).setValue("ブロック");  // F列目にブロックと記入
   }
 }
 
