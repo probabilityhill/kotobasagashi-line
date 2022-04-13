@@ -1064,9 +1064,20 @@ const ruleUnique = {
             "contents": [
               {
                 "type": "text",
-                "text": "xを構成に含む漢字",
+                "text": "高度な検索の例",
                 "weight": "bold",
-                "color": "#375e97"
+                "color": "#375e97",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "xを構成に含む漢字"
+                  },
+                  {
+                    "type": "span",
+                    "text": "（半角/全角不等号で囲む）",
+                    "size": "xs"
+                  }
+                ]
               }
             ],
             "paddingBottom": "sm"
@@ -1087,7 +1098,51 @@ const ruleUnique = {
                   },
                   {
                     "type": "span",
-                    "text": "：xを構成に含む漢字1文字を表す"
+                    "text": "：xを構成に含む漢字1文字"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "xs",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "<月>",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：肝, 筋, 有, 背, 脳, 静, 消, 青, 骨, ..."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "xs",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "<日>",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：乾, 傷, 影, 原, 明, 指, 暗, 早, 卓, ..."
                   }
                 ]
               }
@@ -1197,6 +1252,35 @@ const ruleUnique = {
               {
                 "type": "text",
                 "text": "→ 秋桜, 春雨",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "月を構成に含む漢字＋2文字："
+                  },
+                  {
+                    "type": "span",
+                    "text": "漢字ー<月>？？",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ 消防士, 静脈血",
                 "size": "xs",
                 "color": "#6C757D"
               }
