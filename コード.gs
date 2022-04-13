@@ -95,7 +95,7 @@ const quickReply = {
 };
 
 function simpleSearch(str){
-  str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／|\//g, "|").replace(/ー|‐/g, "-")  // 記号の置換
+  str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／|\//g, "|").replace(/ー|‐|‑|–|—|―|ｰ/g, "-")  // 記号の置換
   str = str.replace(/\?|？|．|。/g, ".");  // １文字
   str = str.replace(/~/g, ".*");  // 含む .*a.*
   str = getHalfWidth(str);  // 全角→半角
@@ -336,10 +336,10 @@ function getUserName(){
 }
 
 function tmp(){
-  console.log(getWords("<月>..", /.+/));
+  //console.log(getWords("<月>..", /.+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
-  console.log(simpleSearch("～（たいか・しんか）～"));
-  console.log(xIsY("てかん","ひ"));
+  console.log(simpleSearch("漢字−<月>??"));
+  //console.log(xIsY("てかん","ひ"));
 }
 
 function countWords(){
