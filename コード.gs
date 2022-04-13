@@ -95,7 +95,7 @@ const quickReply = {
 };
 
 function simpleSearch(str){
-  str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／|\//g, "|").replace(/ー|‐|−|‑|–|—|―|ｰ/g, "-")  // 記号の置換
+  str = str.replace(/〜|～/g, "~").replace(/（(.+)）/g, "($1)").replace(/・|／|\//g, "|")  // 記号の置換
   str = str.replace(/\?|？|．|。/g, ".");  // １文字
   str = str.replace(/~/g, ".*");  // 含む .*a.*
   str = getHalfWidth(str);  // 全角→半角
@@ -108,7 +108,8 @@ function simpleSearch(str){
     str = str.replace(eval("/"+x+"/"), "(.)");  // 1つ目のxは(.)に置換
     str = str.replace(eval("/"+x+"/g"), "\\"+num);  // 2つ目以降のxはすべて\\idxに置換
   }
-  if(/\-/.test(str)){
+  if(/(漢字|ひ漢字|a)(\-|ー|‐|−|‑|–|—|―|ｰ)/.test(str)){
+    str = str.replace(/ー|‐|−|‑|–|—|―|ｰ/g, "-");
     let strArray = str.split("-");
     let head = strArray[0];
     str = strArray[1];
@@ -271,7 +272,7 @@ function getHalfWidth(str){
 
 function getFilterRgx(type){
   if(type === "ひ"){
-    return /^[\u3040-\u309F]+$/;
+    return /^[\u3040-\u309F\u30FC]+$/;
   }
   else if(type === "a"){
     return /^[a-z]+$/;
@@ -281,7 +282,7 @@ function getFilterRgx(type){
   }
   else{
     // type === "ひ漢字"
-    return /^[\u3040-\u309F\u3005-\u3006\u4E00-\u9FFF]+$/;
+    return /^[\u3040-\u309F\u3005-\u3006\u4E00-\u9FFF\u30FC]+$/;
   }
   
 }
@@ -337,7 +338,7 @@ function getUserName(){
 function tmp(){
   //console.log(getWords("<月>..", /.+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
-  console.log(simpleSearch("漢字−<月>??"));
+  console.log(simpleSearch("漢字-？月"));
   //console.log(xIsY("てかん","ひ"));
 }
 
