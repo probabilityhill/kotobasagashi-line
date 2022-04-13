@@ -3874,9 +3874,11 @@ function getWords(str, filterRgx){
   str = str.replace(/IRO/g, "(紫|青|藍|紺|水|緑|黄|金|橙|朱|赤|茶|紅|桃|銀|灰|鼠|黒|白|虹|むらさき|あお|あい|こん|みず|みどり|き|きん|だいだい|しゅ|あか|ちゃ|べに|もも|ぎん|はい|ねずみ|くろ|しろ|にじ|purple|violet|blue|indigo|navy|water|green|yellow|gold|orange|red|brown|pink|silver|gray|grey|black|white|rainbow|cyan|magenta)");
   str = str.replace(/ETO/g, "(子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥|ね|うし|とら|う|たつ|み|うま|ひつじ|さる|とり|いぬ|い|rat|ox|tiger|rabbit|hare|dragon|snake|horse|sheep|monkey|rooster|dog|boar)");
   str = str.replace(/HOGAKU/g, "(東|西|南|北|east|west|south|north|ひがし|にし|みなみ|きた|とう|ざい|なん|ぼく)");
-  str = str.replace(/SHIKI/g, "(春|夏|秋|冬|はる|なつ|あき|ふゆ|しゅん|か|しゅう|とう|spring|summer|autumn|fall|winter)");
+  str = str.replace(/SHIKI/g, "(春|夏|秋|冬|はる|なつ|あき|ふゆ|spring|summer|autumn|fall|winter)");
   str = str.replace(/SUJI/g, "(零|一|二|三|四|五|六|七|八|九|十|百|千|万|億|兆|京|zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|hundred|thousand|million|billion|ぜろ|れい|いち|に|さん|し|ご|ろく|なな|はち|きゅう|じゅう|ひゃく|せん|まん|おく|ちょう|けい)");
   str = str.replace(/WEEK/g, "(月|火|水|木|金|土|日|げつ|か|すい|もく|きん|ど|にち|mon|tue|wed|thu|fri|sat|sun)");
+  str = str.replace(/OTO/g, "(ど|れ|み|ふぁ|そ|ら|し)");
+  str = str.replace(/GENSO/g, "(h|he|li|be|b|c|n|o|f|ne|na|mg|al|si|p|s|cl|ar|k|ca|sc|ti|v|cr|mn|fe|co|ni|cu|zn|ga|ge|as|se|br|kr|rb|sr|y|zr|nb|mo|tc|ru|rh|pd|ag|cd|in|sn|sb|te|i|xe|cs|ba|la|ce|pr|nd|pm|sm|eu|gd|tb|dy|ho|er|tm|yb|lu|ac|th|pa|u|np|pu|am|cm|bk|cf|es|fm|md|no|lr|hf|ta|w|re|os|ir|pt|au|hg|tl|pb|bi|po|at|rn|fr|ra|rf|db|sg|bh|hs|mt|ds|rg|cn|nh|fl|mc|lv|ts|og|水素|すいそ|へりうむ|りちうむ|べりりうむ|ほうそ|炭素|たんそ|窒素|ちっそ|酸素|さんそ|ふっそ|ねおん|なとりうむ|まぐねしうむ|あるみにうむ|けいそ|りん|硫黄|いおう|塩素|えんそ|あるごん|かりうむ|かるしうむ|すかんじうむ|ちたん|ばなじうむ|くろむ|まんがん|鉄|てつ|こばると|にっける|銅|どう|亜鉛|あえん|がりうむ|げるまにうむ|ひそ|せれん|臭素|しゅうそ|くりぷとん|るびじうむ|すとろんちうむ|いっとりうむ|じるこにうむ|におぶ|もりぶでん|てくねちうむ|るてにうむ|ろじうむ|ぱらじうむ|銀|ぎん|かどみうむ|いんじうむ|錫|すず|あんちもん|てるる|ようそ|きせのん|せしうむ|ばりうむ|たんぐすてん|うらん|いりじうむ|白金|はっきん|金|きん|水銀|すいぎん|たりうむ|鉛|なまり|びすます|らどん|らじうむ|らんたん|ふらんしうむ|あめりしうむ|きゅりうむ|にほにうむ|とりうむ)");
 
   console.log(str);  // CHECK
 
