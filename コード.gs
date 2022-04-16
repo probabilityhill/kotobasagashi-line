@@ -129,7 +129,7 @@ function advancedSearch(pbData, array){
 
 
   for(var i = 0; i < array.length; i++){
-    array[i] = getHalfWidth(array[i]).replace(/，|、/,",");  // 全角→半角、カンマへの置換
+    array[i] = getHalfWidth(array[i]).replace(/，|、/,",").replace(/（(.+?)）/g, "($1)").replace(/・|／|\//g, "|");  // 全角→半角、記号の置換
   }
 
   const filterRgx = getFilterRgx(array.slice(-1)[0]);  // 文字種フィルター
