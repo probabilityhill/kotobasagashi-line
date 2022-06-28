@@ -1,5 +1,4 @@
-# kotobasagashi-line
-単語検索 LINE bot「ことばさがし」
+# 単語検索 LINE Bot「ことばさがし」
 
 詳しくはこちら → [【LINE Messaging API, GAS】複雑な単語検索ができるLINE Botを作った - Qiita](https://qiita.com/probabilityhill/items/d3ae1c862bad592cd28c)
 
