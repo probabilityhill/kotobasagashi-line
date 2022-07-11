@@ -1,8 +1,7 @@
 const scriptProperties = PropertiesService.getScriptProperties();
 const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN');
 
-const wordsId = "1zfYd-G2z7T-wihqRQejSABe5BpfL0ugs";
-const wordsFile = DriveApp.getFileById(wordsId);
+const wordsFile = DriveApp.getFilesByName("word.csv").next();
 const wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split("\n");
 
 const sheetId = "1Uo9_SrTYmpS8e8CqXTkFzO4h90BGVlWW1IOaVPtKn9o";
@@ -16,13 +15,39 @@ function getE2kRgx(str){
   return "("+e2k[str].join("|")+")";
 }
 
+const testFile = DriveApp.getFilesByName("test.csv").next();
+const testArray = testFile.getBlob().getDataAsString("UTF-8").split("\n");
+
+function tmp(){
+  //console.log(testArray)
+  //delWords(testArray, ["bc"]);
+  //addWords(testArray, ["ab", "bc", "cd"]);
+  //console.log(getWords("<月>..", /.+/));
+  //console.log(simpleSearch("ＸＹＸＹ"));
+  //console.log(getE2kRgx("月"));
+  //console.log(xIsY("てかん","ひ"));
+}
+
+function addWords(array, words){
+  for (const x of words) {
+    if (!array.includes(x)){
+      array.push(x);
+    } 
+  }
+  makeSpreadSheet(array);
+}
+
+function delWords(array, words){
+  makeSpreadSheet(array.filter(x => !words.includes(x)));
+}
+
 /*
-function keepDelWords(array){
+function keepDelWords(words){
   const trashId = "1Gdn4m4s0Aq9vf0PTNJ-4sqOZRqIuB96SSr9tEfp7478";
   const data = SpreadsheetApp.openById(trashId).getSheets()[0];  // ゴミ箱シートを取得
   const lastRow = data.getLastRow();
-  for(let i = 0; i < array.length; i++){
-    data.getRange(lastRow+1+i,1).setValue(array[i]);
+  for(let i = 0; i < words.length; i++){
+    data.getRange(lastRow+1+i,1).setValue(words[i]);
   }
 }
 */
@@ -326,13 +351,6 @@ function getUserName(){
       data.getRange(i,5).setValue(JSON.parse(userProfile).pictureUrl);
     }
   }
-}
-
-function tmp(){
-  //console.log(getWords("<月>..", /.+/));
-  //console.log(simpleSearch("ＸＹＸＹ"));
-  //console.log(getE2kRgx("月"));
-  //console.log(xIsY("てかん","ひ"));
 }
 
 function countWords(){
