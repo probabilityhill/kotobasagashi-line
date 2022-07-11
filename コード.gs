@@ -21,7 +21,7 @@ const testArray = testFile.getBlob().getDataAsString("UTF-8").split("\n");
 function tmp(){
   //console.log(testArray)
   //delWords(testArray, ["bc"]);
-  //addWords(testArray, ["ab", "bc", "cd"]);
+  addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
   //console.log(getE2kRgx("月"));
@@ -56,7 +56,7 @@ function makeSpreadSheet(array){
   var csv = array.join('\n');
 
   // Blobオブジェクトの作成
-  var blob = Utilities.newBlob(csv, MimeType.CSV, 'test.csv');
+  var blob = Utilities.newBlob(csv, MimeType.CSV, 'word.csv');
   
   // CSVファイルの保存先フォルダを指定
   var id = '1s35bmgREfICvHK-8Eezgx51g7ZV8Ojfb'; //フォルダID
