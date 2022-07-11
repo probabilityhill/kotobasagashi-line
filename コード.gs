@@ -1,9 +1,9 @@
 const scriptProperties = PropertiesService.getScriptProperties();
 const ACCESS_TOKEN = scriptProperties.getProperty('ACCESS_TOKEN');
 
-const wordsId = "1BiDeYFDhD4aXT7hIag_L0uJuOiSY84_s";
+const wordsId = "1zfYd-G2z7T-wihqRQejSABe5BpfL0ugs";
 const wordsFile = DriveApp.getFileById(wordsId);
-const wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split(",");
+const wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split("\n");
 
 const sheetId = "1Uo9_SrTYmpS8e8CqXTkFzO4h90BGVlWW1IOaVPtKn9o";
 const data = SpreadsheetApp.openById(sheetId).getSheets()[0];  // シートを取得
@@ -28,11 +28,10 @@ function keepDelWords(array){
 */
 
 function makeSpreadSheet(array){
-  // 二次元配列をカンマ区切りの文字列に変換
   var csv = array.join('\n');
 
   // Blobオブジェクトの作成
-  var blob = Utilities.newBlob(csv, MimeType.CSV, 'word.csv');
+  var blob = Utilities.newBlob(csv, MimeType.CSV, 'test.csv');
   
   // CSVファイルの保存先フォルダを指定
   var id = '1s35bmgREfICvHK-8Eezgx51g7ZV8Ojfb'; //フォルダID
@@ -40,12 +39,6 @@ function makeSpreadSheet(array){
 
   // CSVファイルを作成
   folder.createFile(blob);
-  /*
-  const ssId = "1AkYQV-i_gIYWBaXP2DyxRSG-7IYz2I3ZFfA6kPIDX10"
-  const ssFile = SpreadsheetApp.openById(ssId).getSheets()[0];
-  for(let i = 1; i < wordsArray.length; i++){
-    ssFile.getRange(1, i).setValue(wordsArray[i-1]);
-  }*/
 }
 
 
@@ -338,7 +331,7 @@ function getUserName(){
 function tmp(){
   //console.log(getWords("<月>..", /.+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
-  console.log(simpleSearch("（く・り）（か・き）"));
+  //console.log(getE2kRgx("月"));
   //console.log(xIsY("てかん","ひ"));
 }
 
