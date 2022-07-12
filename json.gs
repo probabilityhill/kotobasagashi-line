@@ -1,3 +1,56 @@
+const quickReply = {
+  "items": [
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "ボタン",
+        "text": "ボタン"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "基本",
+        "text": "基本"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "高度",
+        "text": "高度"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "特殊",
+        "text": "特殊"
+      }
+    },    
+    {
+      "type": "action",
+      "action": {
+        "type": "uri",
+        "label": "追加/削除",
+        "uri": "https://docs.google.com/spreadsheets/d/1Gdn4m4s0Aq9vf0PTNJ-4sqOZRqIuB96SSr9tEfp7478/edit#gid=0"
+      }
+    },    
+    {
+      "type": "action",
+      "action": {
+        "type": "uri",
+        "label": "バグ報告/リクエスト",
+        "uri": "https://forms.gle/wFnKemiWR55AngWK9"
+      }
+    }
+  ]
+};
+
 const ruleBasic = {
   "type": "bubble",
   "size": "giga",

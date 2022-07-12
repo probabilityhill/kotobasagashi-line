@@ -77,52 +77,6 @@ function makeSpreadSheet(array){
   folder.createFile(blob);
 }
 
-
-const quickReply = {
-  "items": [
-    {
-      "type": "action",
-      "action": {
-        "type": "message",
-        "label": "ボタン",
-        "text": "ボタン"
-      }
-    },
-    {
-      "type": "action",
-      "action": {
-        "type": "message",
-        "label": "基本",
-        "text": "基本"
-      }
-    },
-    {
-      "type": "action",
-      "action": {
-        "type": "message",
-        "label": "高度",
-        "text": "高度"
-      }
-    },
-    {
-      "type": "action",
-      "action": {
-        "type": "message",
-        "label": "特殊",
-        "text": "特殊"
-      }
-    },    
-    {
-      "type": "action",
-      "action": {
-        "type": "uri",
-        "label": "バグ報告/リクエスト",
-        "uri": "https://forms.gle/wFnKemiWR55AngWK9"
-      }
-    }
-  ]
-};
-
 function simpleSearch(str){
   str = str.replace(/〜|～/g, "~").replace(/（(.+?)）/g, "($1)").replace(/・|／|\//g, "|")  // 記号の置換
   str = str.replace(/\?|？|．|。/g, ".");  // １文字
