@@ -15,13 +15,9 @@ function getE2kRgx(str){
   return "("+e2k[str].join("|")+")";
 }
 
-const testFile = DriveApp.getFilesByName("test.csv").next();
-const testArray = testFile.getBlob().getDataAsString("UTF-8").split("\n");
-
 function tmp(){
-  //console.log(testArray)
-  //delWords(testArray, ["bc"]);
-  addWords(wordsArray, ["さいぼう"]);
+  console.log(wordsArray[5])
+  //addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
   //console.log(getE2kRgx("月"));
