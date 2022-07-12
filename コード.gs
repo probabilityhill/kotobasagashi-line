@@ -16,7 +16,9 @@ function getE2kRgx(str){
 }
 
 function tmp(){
-  console.log(wordsArray[5])
+  makeSpreadSheet(getDeletedArray(wordsArray, ["", "", "", ""]));  // 手動で削除
+  //console.log(wordsArray.includes(""));
+  //console.log(wordsArray[5])
   //addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
   //console.log(simpleSearch("ＸＹＸＹ"));
@@ -503,10 +505,6 @@ function execute(event){
       }
       sendReplyMessage(replyToken, messages); 
     }
-  }
-  else if(eventType === "unfollow"){
-    const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
-    data.getRange(userIdRow,6).setValue("ブロック");  // F列目にブロックと記入
   }
 }
 
