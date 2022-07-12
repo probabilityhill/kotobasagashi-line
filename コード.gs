@@ -28,29 +28,40 @@ function tmp(){
   //console.log(xIsY("てかん","ひ"));
 }
 
-function addWords(array, words){
+function getAddedArray(array, words){
   for (const x of words) {
     if (!array.includes(x)){
       array.push(x);
     } 
   }
-  makeSpreadSheet(array);
+  return array
 }
 
-function delWords(array, words){
-  makeSpreadSheet(array.filter(x => !words.includes(x)));
+function getDeletedArray(array, words){
+  return array.filter(x => !words.includes(x))
 }
 
-/*
-function keepDelWords(words){
-  const trashId = "1Gdn4m4s0Aq9vf0PTNJ-4sqOZRqIuB96SSr9tEfp7478";
-  const data = SpreadsheetApp.openById(trashId).getSheets()[0];  // ゴミ箱シートを取得
-  const lastRow = data.getLastRow();
-  for(let i = 0; i < words.length; i++){
-    data.getRange(lastRow+1+i,1).setValue(words[i]);
+function getRequests(){
+  const reqId = "1Gdn4m4s0Aq9vf0PTNJ-4sqOZRqIuB96SSr9tEfp7478";
+  const reqSheet = SpreadsheetApp.openById(reqId).getSheets()[0];  // リクエストを取得
+  var addList = []
+  const addLastRow = reqSheet.getRange("A:A").getValues().filter(String).length; 
+  for(let i = 2; i <= addLastRow; i++){
+    addList.push(reqSheet.getRange(i,1).getValue());
   }
+  var addedArray = getAddedArray(wordsArray, addList);
+  reqSheet.getRange(2,1,addLastRow,1).clearContent();
+
+  var delList = []
+  const delLastRow = reqSheet.getRange("B:B").getValues().filter(String).length;
+  for(let i = 2; i <= delLastRow; i++){
+    delList.push(reqSheet.getRange(i,2).getValue());
+  }
+  var deletedArray = getDeletedArray(addedArray, delList);
+  makeSpreadSheet(deletedArray);
+  reqSheet.getRange(2,2,delLastRow,1).clearContent();
 }
-*/
+
 
 function makeSpreadSheet(array){
   var csv = array.join('\n');
