@@ -1,4 +1,5 @@
 import csv
+import re
 
 WORDS_PATH = "word.csv"
 KANJI_PATH = "Unihan_Variants.txt"
@@ -19,12 +20,12 @@ def get_chi_kanji_list():
     return codes
 
 def remove_chinese(word_array, codes):
-    word_array = [w for w in word_array if any((c in w) for c in codes)]
-
-    for code in codes:
-        # 中国語の漢字を含んでいたら
-        if code in ascii(word):
-            print("found it!")
+    for word in word_array:
+        word_uni_escape = ascii(word)
+        # ひらがなと英数字を含んでいたらスキップ
+        if re.search("[0-9a-z\u3040-\u309F\u30FC]+", word):
+            continue
+        if any((c in word_uni_escape) for c in codes):
             print(word)
 
 def get_ja_word_list():
@@ -45,3 +46,4 @@ def update_csv():
 
 word_array = get_ja_word_list()
 codes = get_chi_kanji_list()
+remove_chinese(word_array, codes)
