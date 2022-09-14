@@ -54,10 +54,10 @@ def get_ja_word_list():
     return words
 
 def update_csv(array):
-    with open(WORDS_PATH, mode="w", encoding="utf-8") as f:
+    with open(WORDS_PATH, mode="w", encoding="utf-8", newline="") as f:
         # writerowsを使うために二次元リストにする
         array = [[x] for x in array]
-        writer = csv.writer(f)
+        writer = csv.writer(f, lineterminator='\n')
         writer.writerows(array)
 
 word_array = get_ja_word_list()
