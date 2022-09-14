@@ -3,23 +3,23 @@ import re
 
 WORDS_PATH = "word.csv"
 OLD_KANJI_PATH = "old_kanji.txt"
-SIMPLE_KANJI_PATH = "simple_kanji.txt"
+UNNECESSARY_KANJI_PATH = "unnecessary_kanji.txt"
 COMMON_KANJI_PATH = "common_kanji.txt"
 
-# 簡体字ファイルから日本語の常用漢字を除く
-def update_simple_kanji():
-    with open(SIMPLE_KANJI_PATH, mode="r", encoding="utf-8") as f_s, open(COMMON_KANJI_PATH, mode="r", encoding="utf-8") as f_c:
-        simple_kanji = f_s.read()
+# 不要な漢字に日本語の常用漢字が含まれていたら除く
+def update_unnecessary_kanji():
+    with open(UNNECESSARY_KANJI_PATH, mode="r", encoding="utf-8") as f_s, open(COMMON_KANJI_PATH, mode="r", encoding="utf-8") as f_c:
+        unnecessary_kanji = f_s.read()
         common_kanji = f_c.read()
-        for sk in simple_kanji:
+        for sk in unnecessary_kanji:
             if sk in common_kanji:
-                simple_kanji = simple_kanji.replace(sk, "")
-    with open(SIMPLE_KANJI_PATH, mode="w", encoding="utf-8") as f:
-        f.write(simple_kanji)
+                unnecessary_kanji = unnecessary_kanji.replace(sk, "")
+    with open(UNNECESSARY_KANJI_PATH, mode="w", encoding="utf-8") as f:
+        f.write(unnecessary_kanji)
 
-# 簡体字を返す
-def get_simple_kanji():
-    with open(SIMPLE_KANJI_PATH, mode="r", encoding="utf-8") as f:
+# 不要な漢字を返す
+def get_unnecessary_kanji():
+    with open(UNNECESSARY_KANJI_PATH, mode="r", encoding="utf-8") as f:
         return f.read()
 
 # 旧字体を返す
@@ -28,7 +28,7 @@ def get_old_kanji():
         return f.read()
 
 # 旧字体や日本語にない漢字を除いて返す
-def remove_chinese(word_array, chi_kanji_list):
+def remove_kanji(word_array, chi_kanji_list):
     for word in word_array:
         # ひらがなや英数字を含んでいたらスキップ
         if re.search("[0-9a-z\u3040-\u309F\u30FC]+", word):
@@ -57,6 +57,6 @@ def update_csv(array):
         writer.writerows(array)
 
 word_array = get_ja_word_list()
-chi_kanji_list = get_old_kanji() + get_simple_kanji()
-word_array = remove_chinese(word_array, chi_kanji_list)
+chi_kanji_list = get_old_kanji() + get_unnecessary_kanji()
+word_array = remove_kanji(word_array, chi_kanji_list)
 update_csv(word_array)
