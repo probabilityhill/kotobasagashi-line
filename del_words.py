@@ -30,7 +30,7 @@ def get_old_kanji():
 # 旧字体や日本語にない漢字を除いて返す
 def remove_kanji(word_array, chi_kanji_list):
     for word in word_array:
-        # ひらがなや英数字を含んでいたらスキップ
+        # ひらがな(\u3040-\u309F\u30FC)や英数字(0-9a-z)を含んでいたらスキップ
         if re.search("[0-9a-z\u3040-\u309F\u30FC]+", word):
             continue
         # 不要な漢字を含んでいたら除く
@@ -46,7 +46,11 @@ def get_ja_word_list():
             # 空要素はスキップ
             if len(row) == 0:
                 continue
-            words.append(row[0])
+            word = row[0]
+            # ラテン文字以外のアルファベットに似た文字をスキップ
+            if re.search("[\u00c0-\u0600]+", word):
+                continue
+            words.append(word)
     return words
 
 def update_csv(array):
