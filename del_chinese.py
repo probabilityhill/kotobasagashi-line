@@ -3,6 +3,7 @@ import re
 
 WORDS_PATH = "word.csv"
 OLD_KANJI_PATH = "old_kanji.txt"
+COMMON_KANJI_PATH = "common_kanji.txt"
 
 def get_old_kanji_list():
     with open(OLD_KANJI_PATH, mode="r", encoding="utf-8") as f:
@@ -38,4 +39,4 @@ def update_csv(array):
 
 word_array = get_ja_word_list()
 old_kanji_list = get_old_kanji_list()
-word_array = remove_chinese(word_array)
+# word_array = remove_chinese(word_array)
