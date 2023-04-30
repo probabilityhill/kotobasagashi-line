@@ -1117,6 +1117,190 @@ const ruleUnique = {
             "contents": [
               {
                 "type": "text",
+                "text": "文字の絞り込み",
+                "weight": "bold",
+                "color": "#375e97"
+              }
+            ],
+            "paddingBottom": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "あ↓",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：あ行（行検索：あかさたなはまやらわ + ↓）"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "あ→",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：あ段（段検索：あいうえお + →）"
+                  }
+                ]
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "っ↓",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：捨て仮名検索"
+                  }
+                ]
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "が↓",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：濁音検索"
+                  }
+                ]
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "ぱ↓",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：半濁音検索"
+                  }
+                ]
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "a→",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：母音検索"
+                  }
+                ]
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "b→",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  },
+                  {
+                    "type": "span",
+                    "text": "：子音検索"
+                  }
+                ]
+              }
+            ],
+            "paddingTop": "xs"
+          }
+        ],
+        "paddingAll": "md"
+      },
+      {
+        "type": "separator",
+        "color": "#375e97"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
                 "text": "高度な検索の例",
                 "weight": "bold",
                 "color": "#375e97",
@@ -1334,6 +1518,35 @@ const ruleUnique = {
               {
                 "type": "text",
                 "text": "→ 消防士, 静脈血",
+                "size": "xs",
+                "color": "#6C757D"
+              }
+            ],
+            "paddingTop": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "size": "sm",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "あ段が3文字連続する："
+                  },
+                  {
+                    "type": "span",
+                    "text": "あ→あ→あ→",
+                    "weight": "bold",
+                    "color": "#6182B5"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "→ あたま, さかな",
                 "size": "xs",
                 "color": "#6C757D"
               }

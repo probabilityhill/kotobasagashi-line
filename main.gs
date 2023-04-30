@@ -22,7 +22,7 @@ function tmp(){
   //console.log(wordsArray[5])
   //addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
-  console.log(simpleSearch("漢字ー～夸～"));
+  console.log(simpleSearch("あ→あ→あ→あ→"));
   //console.log(getE2kRgx("月"));
   //console.log(xIsY("てかん","ひ"));
 }
@@ -65,7 +65,6 @@ function getRequests(){
   reqSheet.getRange(2,2,delLastRow,1).clearContent();
 }
 
-
 function makeSpreadSheet(array){
   var csv = array.join('\n');
 
@@ -86,6 +85,21 @@ function simpleSearch(str){
   str = str.replace(/~/g, ".*");  // 含む .*a.*
   str = getHalfWidth(str);  // 全角→半角
   
+  // 行検索
+  str = str.replace(/あ↓/g, "[あいうえお]").replace(/か↓/g, "[かきくけこがぎぐげご]").replace(/さ↓/g, "[さしすせそざじずぜぞ]").replace(/た↓/g, "[たちつてとだぢづでどっ]").replace(/な↓/g, "[なにぬねの]").replace(/は↓/g, "[はひふへほばびぶべぼぱぴぷぺぽ]").replace(/ま↓/g, "[まみむめも]").replace(/や↓/g, "[やゆよゃゅょ]").replace(/ら↓/g, "[らりるれろ]").replace(/わ↓/g, "[わを]");
+  // 段検索
+  str = str.replace(/あ→/g, "[あかさたなはまやらわ]").replace(/い→/g, "[いきしちにひみり]").replace(/う→/g, "[うくすつぬふむゆる]").replace(/え→/g, "[えけせてねへめれ]").replace(/お→/g, "[おこそとのほもよろを]");
+  // 捨て仮名検索
+  str = str.replace(/っ↓/g, "[っゃゅょ]");
+  // 濁音検索
+  str = str.replace(/が↓/g, "[がぎぐげござじずぜぞだぢづでどばびぶべぼ]");
+  // 半濁音検索
+  str = str.replace(/ぱ↓/g, "[ぱぴぷぺぽ]");
+  // 母音検索
+  str = str.replace(/a→/g, "[aeiou]");
+  // 子音検索
+  str = str.replace(/b→/g, "[bcdfghjklmnpqrstvwxyz]");
+
   replaceSameStr("X", 1);
   replaceSameStr("Y", 2);
   replaceSameStr("Z", 3);
