@@ -16,12 +16,13 @@ function getE2kRgx(str){
 }
 
 function tmp(){
-  makeSpreadSheet(getDeletedArray(wordsArray, ["", "", "", ""]));  // 手動で削除
+  //makeSpreadSheet(getDeletedArray(wordsArray, ["", "", "", ""]));  // 手動で削除
+  //makeSpreadSheet(getRemoveChinese(wordsArray, /.*[舉辦钝锐粵夸].*/));
   //console.log(wordsArray.includes(""));
   //console.log(wordsArray[5])
   //addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
-  //console.log(simpleSearch("ＸＹＸＹ"));
+  console.log(simpleSearch("漢字ー～夸～"));
   //console.log(getE2kRgx("月"));
   //console.log(xIsY("てかん","ひ"));
 }
@@ -33,6 +34,10 @@ function getAddedArray(array, words){
     } 
   }
   return array
+}
+
+function getRemoveChinese(array, rgx){
+  return array.filter(x => !x.match(rgx))
 }
 
 function getDeletedArray(array, words){
