@@ -22,7 +22,7 @@ function tmp(){
   //console.log(wordsArray[5])
   //addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
-  console.log(simpleSearch("あ→あ→あ→あ→"));
+  console.log(simpleSearch("い→い→い→"));
   //console.log(getE2kRgx("月"));
   //console.log(xIsY("てかん","ひ"));
 }
@@ -306,6 +306,8 @@ function getWords(str, filterRgx){
 
   let resultArray = wordsArray.filter(RegExp.prototype.test,eval(str));
   resultArray = resultArray.filter(RegExp.prototype.test,eval(filterRgx));  // 文字種フィルタ
+
+  resultArray.sort();
 
   if(resultArray.length === 0){
     return "みつからなかった😣"
