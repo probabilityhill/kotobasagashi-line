@@ -88,7 +88,7 @@ function simpleSearch(str){
   // 行検索
   str = str.replace(/あ↓/g, "[あいうえお]").replace(/か↓/g, "[かきくけこがぎぐげご]").replace(/さ↓/g, "[さしすせそざじずぜぞ]").replace(/た↓/g, "[たちつてとだぢづでどっ]").replace(/な↓/g, "[なにぬねの]").replace(/は↓/g, "[はひふへほばびぶべぼぱぴぷぺぽ]").replace(/ま↓/g, "[まみむめも]").replace(/や↓/g, "[やゆよゃゅょ]").replace(/ら↓/g, "[らりるれろ]").replace(/わ↓/g, "[わを]");
   // 段検索
-  str = str.replace(/あ→/g, "[あかさたなはまやらわ]").replace(/い→/g, "[いきしちにひみり]").replace(/う→/g, "[うくすつぬふむゆる]").replace(/え→/g, "[えけせてねへめれ]").replace(/お→/g, "[おこそとのほもよろを]");
+  str = str.replace(/あ→/g, "[あかがさざただなはばぱまやらわ]").replace(/い→/g, "[いきぎしじちぢにひびぴみり]").replace(/う→/g, "[うくぐすずつづぬふぶぷむゆる]").replace(/え→/g, "[えけげせぜてでねへべぺめれ]").replace(/お→/g, "[おこごそぞとどのほぼぽもよろを]");
   // 捨て仮名検索
   str = str.replace(/っ↓/g, "[っゃゅょ]");
   // 濁音検索
