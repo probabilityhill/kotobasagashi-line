@@ -345,14 +345,21 @@ function getUserName(){
     if(data.getRange(i,3).isBlank()){
       const userId = data.getRange(i,1).getValue();
       const url = 'https://api.line.me/v2/bot/profile/' + userId;
-      const userProfile = UrlFetchApp.fetch(url,{
-        'headers': {
-          'Authorization' :  'Bearer ' + ACCESS_TOKEN,
-        },
-      });      
-      data.getRange(i,3).setValue(JSON.parse(userProfile).displayName);
-      data.getRange(i,4).setValue(JSON.parse(userProfile).statusMessage);
-      data.getRange(i,5).setValue(JSON.parse(userProfile).pictureUrl);
+      try {
+        const userProfile = UrlFetchApp.fetch(url,{
+          'headers': {
+            'Authorization' :  'Bearer ' + ACCESS_TOKEN,
+          },
+        });
+        data.getRange(i,3).setValue(JSON.parse(userProfile).displayName);
+        data.getRange(i,4).setValue(JSON.parse(userProfile).statusMessage);
+        data.getRange(i,5).setValue(JSON.parse(userProfile).pictureUrl);
+      } catch (e) {
+        console.log(`row: ${i}, ${e}`);
+        data.getRange(i,3).setValue('Not found');
+        data.getRange(i,4).setValue('Not found');
+        data.getRange(i,5).setValue('Not found');
+      }
     }
   }
 }
