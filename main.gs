@@ -16,13 +16,15 @@ function getE2kRgx(str){
 }
 
 function tmp(){
+  
   //makeSpreadSheet(getDeletedArray(wordsArray, ["", "", "", ""]));  // 手動で削除
-  //makeSpreadSheet(getRemoveChinese(wordsArray, /.*[舉辦钝锐粵夸].*/));
+  //makeSpreadSheet(getRemoveChinese(wordsArray, /.*[刭].*/));
+
   //console.log(wordsArray.includes(""));
   //console.log(wordsArray[5])
   //addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
-  console.log(simpleSearch("い→い→い→"));
+  //console.log(simpleSearch("い→い→い→"));
   //console.log(getE2kRgx("月"));
   //console.log(xIsY("てかん","ひ"));
 }
@@ -44,9 +46,14 @@ function getDeletedArray(array, words){
   return array.filter(x => !words.includes(x))
 }
 
+// リクエスト実行
+// data/word.csvが作成されるため古いものはbkへ
+// デプロイする
 function getRequests(){
   const reqId = "1Gdn4m4s0Aq9vf0PTNJ-4sqOZRqIuB96SSr9tEfp7478";
   const reqSheet = SpreadsheetApp.openById(reqId).getSheets()[0];  // リクエストを取得
+  
+  // 追加リクエスト
   var addList = []
   const addLastRow = reqSheet.getRange("A:A").getValues().filter(String).length; 
   for(let i = 2; i <= addLastRow; i++){
@@ -55,14 +62,27 @@ function getRequests(){
   var addedArray = getAddedArray(wordsArray, addList);
   reqSheet.getRange(2,1,addLastRow,1).clearContent();
 
+  // 削除リクエスト
   var delList = []
   const delLastRow = reqSheet.getRange("B:B").getValues().filter(String).length;
   for(let i = 2; i <= delLastRow; i++){
     delList.push(reqSheet.getRange(i,2).getValue());
   }
   var deletedArray = getDeletedArray(addedArray, delList);
-  makeSpreadSheet(deletedArray);
   reqSheet.getRange(2,2,delLastRow,1).clearContent();
+
+  // 不要な漢字
+  var chinese = ''
+  const chineseLastRow = reqSheet.getRange("C:C").getValues().filter(String).length;
+  for(let i = 2; i <= chineseLastRow; i++){
+    chinese += reqSheet.getRange(i,3).getValue();
+  }
+  const pattern = new RegExp(`/.*[${chinese}].*/`);
+  var chineseDeletedArray = getRemoveChinese(deletedArray, pattern);
+  reqSheet.getRange(2,3,delLastRow,1).clearContent();
+
+  // スプレッドシート生成
+  makeSpreadSheet(chineseDeletedArray);
 }
 
 function makeSpreadSheet(array){
