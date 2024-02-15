@@ -77,7 +77,7 @@ function getRequests(){
   for(let i = 2; i <= chineseLastRow; i++){
     chinese += reqSheet.getRange(i,3).getValue();
   }
-  const pattern = new RegExp(`/.*[${chinese}].*/`);
+  const pattern = new RegExp(`.*[${chinese}].*`);
   var chineseDeletedArray = getRemoveChinese(deletedArray, pattern);
   reqSheet.getRange(2,3,delLastRow,1).clearContent();
 
