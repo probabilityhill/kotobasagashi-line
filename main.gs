@@ -14,6 +14,14 @@ const e2kId = "1IcvttHeFbdJuhnQoiAv1TIyi1KLnrttg";
 const e2kFile = DriveApp.getFileById(e2kId);
 const e2k = JSON.parse(e2kFile.getBlob().getDataAsString("UTF-8"));
 
+const MESSAGE = {
+  NOT_FOUND: () => "みつからなかった😣",
+  TOO_MANY: () => "いっぱいあってさがしきれないよ😵",
+  BUG_FOUND: () => "例外をキャッチした！改善するね🫠",
+  INPUT_INCORRECT: () => "入力が正しくないよ😵",
+  FOUND: (str) => str + "がみつかったよ😊",
+};
+
 function getE2kRgx(str){
   const kanjiArray = e2k[str];
   return kanjiArray ? "(" + kanjiArray.join("|") + ")" : str;
@@ -272,12 +280,12 @@ function xIsY(bfStr, type){
     }
 
     if(afStrList.length === 0){
-      return "みつからなかった😣"
+      return MESSAGE.NOT_FOUND();
     }
     else{
-      const resultText = afStrList.join("\n")+"\nがみつかったよ😊";
+      const resultText = MESSAGE.FOUND(afStrList.join("\n") + "\n");
       if(resultText.length > 5000){
-        return "いっぱいあってさがしきれないよ😵";
+        return MESSAGE.TOO_MANY();
       }
       return resultText;
     }
@@ -333,11 +341,11 @@ function getWords(str, filterRgx){
   resultArray.sort();
 
   if(resultArray.length === 0){
-    return "みつからなかった😣"
+    return MESSAGE.NOT_FOUND();
   }
-  const resultText = "「"+resultArray.join(", ")+"」がみつかったよ😊";
+  const resultText = MESSAGE.FOUND("「" + resultArray.join(", ") + "」");
   if(resultText.length > 5000){
-    return "いっぱいあってさがしきれないよ😵";
+    return MESSAGE.TOO_MANY();
   }
   return resultText;
 }
@@ -569,7 +577,7 @@ function execute(event){
         writeErrorLog(text, e);
         messages = [{
           "type":"text",
-          "text":"例外をキャッチした！改善するね😵",
+          "text":MESSAGE.BUG_FOUND(),
           "quickReply": quickReply
         }];
       }
