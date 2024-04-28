@@ -12,7 +12,8 @@ const e2kFile = DriveApp.getFileById(e2kId);
 const e2k = JSON.parse(e2kFile.getBlob().getDataAsString("UTF-8"));
 
 function getE2kRgx(str){
-  return "("+e2k[str].join("|")+")";
+  const kanjiArray = e2k[str];
+  return kanjiArray ? "(" + kanjiArray.join("|") + ")" : str;
 }
 
 function tmp(){
@@ -24,7 +25,7 @@ function tmp(){
   //console.log(wordsArray[5])
   //addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
-  //console.log(simpleSearch("い→い→い→"));
+  console.log(simpleSearch("漢字ー～＜下＞～"));
   //console.log(getE2kRgx("月"));
   //console.log(xIsY("てかん","ひ"));
 }
