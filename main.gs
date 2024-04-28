@@ -7,6 +7,9 @@ const wordsArray = wordsFile.getBlob().getDataAsString("UTF-8").split("\n");
 const sheetId = "1Uo9_SrTYmpS8e8CqXTkFzO4h90BGVlWW1IOaVPtKn9o";
 const data = SpreadsheetApp.openById(sheetId).getSheets()[0];  // シートを取得
 
+const errorLogSheetId = "1D5l8a954MBg2VTpXOrRWjQbDAUWPN0B6HoZYXp4KlCk";
+const errorLogSheet = SpreadsheetApp.openById(errorLogSheetId).getSheets()[0];  // シートを取得
+
 const e2kId = "1IcvttHeFbdJuhnQoiAv1TIyi1KLnrttg";
 const e2kFile = DriveApp.getFileById(e2kId);
 const e2k = JSON.parse(e2kFile.getBlob().getDataAsString("UTF-8"));
@@ -17,15 +20,14 @@ function getE2kRgx(str){
 }
 
 function tmp(){
-  
   //makeSpreadSheet(getDeletedArray(wordsArray, ["", "", "", ""]));  // 手動で削除
   //makeSpreadSheet(getRemoveChinese(wordsArray, /.*[刭].*/));
-
+  writeErrorLog("text", "e")
   //console.log(wordsArray.includes(""));
   //console.log(wordsArray[5])
   //addWords(wordsArray, ["さいぼう"]);
   //console.log(getWords("<月>..", /.+/));
-  console.log(simpleSearch("漢字ー～＜下＞～"));
+  // console.log(simpleSearch("漢字ー～＜下＞～"));
   //console.log(getE2kRgx("月"));
   //console.log(xIsY("てかん","ひ"));
 }
@@ -340,6 +342,12 @@ function getWords(str, filterRgx){
   return resultText;
 }
 
+function writeErrorLog(text, e){
+  const writeRow = errorLogSheet.getLastRow() + 1;
+  const nowDate = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd hh:mm:ss')
+  errorLogSheet.getRange(writeRow, 1, 1, 3).setValues([[nowDate, text, e]]);
+}
+
 function getUserName(){
   const lastRow = data.getLastRow();  // 最終行取得
   for(let i = 1; i <= lastRow; i++){
@@ -371,10 +379,14 @@ function countWords(){
   // 	ひらがなのみ：77504, 熟語：47183, ひらがなと漢字混合：5739, 英単語：121946
 }
 
-function doPost(e){
-  const events = JSON.parse(e.postData.contents).events;
-  for (var i = 0; i < events.length; i++){
-    execute(events[i]);
+function doPost(event){
+  const events = JSON.parse(event.postData.contents).events;
+  for (const evt of events) {
+    try {
+      execute(evt);
+    } catch(e) {
+      writeErrorLog(evt, e);
+    }
   }
 }
 
@@ -499,58 +511,67 @@ function execute(event){
     if(event.message.type === "text"){
       const text = event.message.text;
       let messages = null;
-
-      switch(true){
-        case(/^基本$/.test(text)):
-          messages = [{
-            "type":"flex",
-            "altText":"使い方（基本）",
-            "contents":ruleBasic,
-            "quickReply": quickReply
+      
+      try {
+        switch(true){
+          case(/^基本$/.test(text)):
+            messages = [{
+              "type":"flex",
+              "altText":"使い方（基本）",
+              "contents":ruleBasic,
+              "quickReply": quickReply
+              }];
+            break;
+          case(/^高度$/.test(text)):
+            messages = [{
+              "type":"flex",
+              "altText":"使い方（高度）",
+              "contents":ruleAdvanced,
+              "quickReply": quickReply
+              }];
+            break;
+          case(/^特殊$/.test(text)):
+            messages = [{
+              "type":"flex",
+              "altText":"使い方（特殊）",
+              "contents":ruleUnique,
+              "quickReply": quickReply
+              }];
+            break;
+          case(/^ボタン$/.test(text)):
+            messages = [{
+              "type":"flex",
+              "altText":"ボタンパネル",
+              "contents":btnList,
+              "quickReply": quickReply
+              }];
+            break;
+          case(/.*(\s|\u3000).*/.test(text)):
+            // 高度な検索
+            const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
+            const pbData = data.getRange(userIdRow,2).getValue();  // B列目のpbDataを取得       
+            const textArray = text.split(/\s|\u3000/);  // 空白で分割
+            messages = [{
+              "type":"text",
+              "text":advancedSearch(pbData, textArray),
+              "quickReply": quickReply
             }];
-          break;
-        case(/^高度$/.test(text)):
-          messages = [{
-            "type":"flex",
-            "altText":"使い方（高度）",
-            "contents":ruleAdvanced,
-            "quickReply": quickReply
+            break;
+          default:
+            // シンプルな検索
+            messages = [{
+              "type":"text",
+              "text":simpleSearch(text),
+              "quickReply": quickReply
             }];
-          break;
-        case(/^特殊$/.test(text)):
-          messages = [{
-            "type":"flex",
-            "altText":"使い方（特殊）",
-            "contents":ruleUnique,
-            "quickReply": quickReply
-            }];
-          break;
-        case(/^ボタン$/.test(text)):
-          messages = [{
-            "type":"flex",
-            "altText":"ボタンパネル",
-            "contents":btnList,
-            "quickReply": quickReply
-            }];
-          break;
-        case(/.*(\s|\u3000).*/.test(text)):
-          // 高度な検索
-          const userIdRow = data.createTextFinder(userId).findNext().getRow();  // ユーザIDが存在する行
-          const pbData = data.getRange(userIdRow,2).getValue();  // B列目のpbDataを取得       
-          const textArray = text.split(/\s|\u3000/);  // 空白で分割
-          messages = [{
-            "type":"text",
-            "text":advancedSearch(pbData, textArray),
-            "quickReply": quickReply
-          }];
-          break;
-        default:
-          // シンプルな検索
-          messages = [{
-            "type":"text",
-            "text":simpleSearch(text),
-            "quickReply": quickReply
-          }];
+        }
+      } catch (e) {
+        writeErrorLog(text, e);
+        messages = [{
+          "type":"text",
+          "text":"例外をキャッチした！改善するね😵",
+          "quickReply": quickReply
+        }];
       }
       sendReplyMessage(replyToken, messages); 
     }
